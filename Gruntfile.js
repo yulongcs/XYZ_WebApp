@@ -233,8 +233,8 @@ module.exports = function (grunt) {
           '<%= config.dist %>/assets/images/{,*/}*.*',
           '<%= config.dist %>/assets/styles/fonts/{,*/}*.*',
           '<%= config.dist %>/assets/*.{ico,png}'
-        ],
-      },
+        ]
+      }
     },
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
@@ -244,7 +244,7 @@ module.exports = function (grunt) {
       options: {
         dest: '<%= config.dist %>'
       },
-      html: '<%= config.app %>/views/includes/head.jade',
+      html: '<%= config.app %>/views/includes/head.jade'
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
@@ -258,21 +258,17 @@ module.exports = function (grunt) {
       },
       html: ['<%= config.dist %>/{,*/}*.html'],
       css: ['<%= config.dist %>/assets/styles/{,*/}*.css'],
-      js: ['<%= config.dist %>/assets/scripts/{,*/}*.js'],
+      js: ['<%= config.dist %>/assets/scripts/{,*/}*.js']
     },
 
     jadeUsemin: {
       scripts: {
         options: {
-          // tasks: {
-          //   js: ['concat', 'uglify', 'filerev'],
-          //   css: ['concat', 'cssmin', 'filerev']
-          // },
           dirTasks: ['filerev']
         },
         files: [{
           src: '<%= config.dist %>/views/includes/head.jade',
-          dest: '<%= config.dist %>/views/includes/head.jade',
+          dest: '<%= config.dist %>/views/includes/head.jade'
         }]
       }
     },
@@ -322,32 +318,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-
-    // By default, your `index.html`'s <!-- Usemin block --> will take care
-    // of minification. These next options are pre-configured if you do not
-    // wish to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/assets/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= config.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/assets/scripts/scripts.js': [
-    //         '<%= config.dist %>/assets/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -477,9 +447,7 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'jadeUsemin',
-    // 'jadeFilerevUsemin',
-    
-    // 'htmlmin'
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
