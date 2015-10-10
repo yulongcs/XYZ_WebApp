@@ -96,7 +96,7 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     background: false,
-                    server: "<%= config.dist %>"
+                    server: "<%= config.dist %>/app"
                 }
             }
         },
@@ -240,11 +240,11 @@ module.exports = function(grunt) {
         filerev: {
             dist: {
                 src: [
-                    "<%= config.dist %>/assets/scripts/{,*/}*.js",
-                    "<%= config.dist %>/assets/styles/{,*/}*.css",
-                    "<%= config.dist %>/assets/images/{,*/}*.*",
-                    "<%= config.dist %>/assets/styles/fonts/{,*/}*.*",
-                    "<%= config.dist %>/assets/*.{ico,png}"
+                    "<%= config.dist %>/app/assets/scripts/{,*/}*.js",
+                    "<%= config.dist %>/app/assets/styles/{,*/}*.css",
+                    "<%= config.dist %>/app/assets/images/{,*/}*.*",
+                    "<%= config.dist %>/app/assets/styles/fonts/{,*/}*.*",
+                    "<%= config.dist %>/app/assets/*.{ico,png}"
                 ]
             }
         },
@@ -254,7 +254,7 @@ module.exports = function(grunt) {
         // additional tasks can operate on them
         useminPrepare: {
             options: {
-                dest: "<%= config.dist %>"
+                dest: "<%= config.dist %>/app"
             },
             html: "<%= config.app %>/index.html"
         },
@@ -263,14 +263,14 @@ module.exports = function(grunt) {
         usemin: {
             options: {
                 assetsDirs: [
-                    "<%= config.dist %>",
-                    "<%= config.dist %>/assets/images",
-                    "<%= config.dist %>/assets/styles"
+                    "<%= config.dist %>/app",
+                    "<%= config.dist %>/app/assets/images",
+                    "<%= config.dist %>/app/assets/styles"
                 ]
             },
-            html: ["<%= config.dist %>/{,*/}*.html"],
-            css: ["<%= config.dist %>/assets/styles/{,*/}*.css"],
-            js: ["<%= config.dist %>/assets/scripts/{,*/}*.js"]
+            html: ["<%= config.dist %>/app/{,*/}*.html"],
+            css: ["<%= config.dist %>/app/assets/styles/{,*/}*.css"],
+            js: ["<%= config.dist %>/app/assets/scripts/{,*/}*.js"]
         },
 
         jadeUsemin: {
@@ -280,8 +280,8 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        src: "<%= config.dist %>/views/includes/head.jade",
-                        dest: "<%= config.dist %>/views/includes/head.jade"
+                        src: "<%= config.dist %>/app/views/includes/head.jade",
+                        dest: "<%= config.dist %>/app/views/includes/head.jade"
                     }
                 ]
             }
@@ -295,7 +295,7 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: "<%= config.app %>/assets/images",
                         src: "{,*/}*.{gif,jpeg,jpg,png}",
-                        dest: "<%= config.dist %>/assets/images"
+                        dest: "<%= config.dist %>/app/assets/images"
                     }
                 ]
             }
@@ -308,7 +308,7 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: "<%= config.app %>/images",
                         src: "{,*/}*.svg",
-                        dest: "<%= config.dist %>/assets/images"
+                        dest: "<%= config.dist %>/app/assets/images"
                     }
                 ]
             }
@@ -331,9 +331,9 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: "<%= config.dist %>",
+                        cwd: "<%= config.dist %>/app",
                         src: "{,*/}*.html",
-                        dest: "<%= config.dist %>"
+                        dest: "<%= config.dist %>/app"
                     }
                 ]
             }
@@ -346,8 +346,17 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         dot: true,
-                        cwd: "<%= config.app %>",
                         dest: "<%= config.dist %>",
+                        src: [
+                            "app.js",
+                            "config/{,*/}*.js"
+                        ]
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: "<%= config.app %>",
+                        dest: "<%= config.dist %>/app",
                         src: [
                             "*.{ico,png,txt}",
                             "images/{,*/}*.webp",
@@ -356,15 +365,14 @@ module.exports = function(grunt) {
                             "models/{,*/}*.js",
                             "schemas/{,*/}*.js",
                             "controlles/{,*/}*.js",
-                            "views/{,*/}*.jade",
-                            "app.js"
+                            "views/{,*/}*.jade"
                         ]
                     },
                     {
                         expand: true,
                         dot: true,
                         cwd: "<%= config.app %>",
-                        dest: "<%= config.dist %>/assets",
+                        dest: "<%= config.dist %>/app/assets",
                         src: [
                             "images/{,*/}*.webp",
                             "styles/fonts/{,*/}*.*"
@@ -373,11 +381,11 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         dot: true,
+                        dest: "<%= config.dist %>/app",
                         cwd: ".",
                         src: [
                             "bower_components/bootstrap-sass/assets/fonts/bootstrap/*"
-                        ],
-                        dest: "<%= config.dist %>"
+                        ]
                     }
                 ]
             }
@@ -388,12 +396,12 @@ module.exports = function(grunt) {
         modernizr: {
             dist: {
                 devFile: "bower_components/modernizr/modernizr.js",
-                outputFile: "<%= config.dist %>/assets/scripts/vendor/modernizr.js",
+                outputFile: "<%= config.dist %>/app/assets/scripts/vendor/modernizr.js",
                 files: {
                     src: [
-                        "<%= config.dist %>/assets/scripts/{,*/}*.js",
-                        "<%= config.dist %>/assets/styles/{,*/}*.css",
-                        "!<%= config.dist %>/assets/scripts/vendor/*"
+                        "<%= config.dist %>/app/assets/scripts/{,*/}*.js",
+                        "<%= config.dist %>/app/assets/styles/{,*/}*.css",
+                        "!<%= config.dist %>/app/assets/scripts/vendor/*"
                     ]
                 },
                 uglify: true
