@@ -1,0 +1,141 @@
+﻿// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+/* wechat.css */
+body {
+    margin: 0;
+	-webkit-user-select: none;
+	user-select: none;
+	-ms-touch-action: none;
+}
+
+/* construction */
+html, body, .page {
+	height: 100%; width: 100%;
+	overflow: hidden;
+}
+
+body { background-color: #ebebeb; font-family: 'Microsoft YaHei'; }
+a { text-decoration: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+h1,h2,h3,h4,h5,h6{ margin: 0; font-weight: 400; }
+ul,ol{ margin: 0; list-style-type: none; }
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; } 
+.clearfix { display: inline-block; } /* Hide from IE Mac \*/ 
+.clearfix { display: block; } /* End hide from IE Mac */ 
+.none { display: none; } /* End Clearfix */
+.margin-b{margin-bottom:10px;}
+.align-c{text-align:center;}
+.row{margin:0px;}
+
+.btn{
+    width:120px; font-size:16px; 
+}
+.btn.btn-green{
+    background-color:#01af63;color:#ffffff;
+}
+.btn.btn-green:hover{
+    background-color:#048c51;
+}
+
+
+/*absolute.css*/
+.page{position:relative; max-width:1200px; height:100%; margin:0 auto;}
+.header, .footer, .content { position: absolute; left: 0; right: 0; }
+.header { height: 56px; background-color: #01af63; color: #fff;}
+.header > h1 { line-height: 56px; font-size: 20px; text-align:center; display:inline-block; width:100%;  }
+.header > a {position:absolute; display: inline-block; width: 48px; height: 48px; background-position:center; text-indent: -9em; overflow: hidden;  }
+.header > .go-back {
+    margin:0 10px;
+    background-size:22px;
+    background-image: url('../images/icons/icon_close.png');
+    background-repeat:no-repeat;
+}
+.header > .go-user {
+    margin:0 62px;
+    background-size:26px;
+    background-image: url('../images/icons/icon_topUser.png');
+    background-repeat:no-repeat;
+    right:-48px;
+    top:0px;
+}
+
+.content { top: 70px; bottom: 64px; overflow: auto; background-color:#fff; }
+
+
+.uploadimg-list{
+    display: block; box-sizing: border-box; padding-left:17px;
+}
+.uploadimg-list > .item,.uploadimg-list > img {
+    width:74px; height:74px; margin:10px 12px 0px 0; float:left;  
+    border:1px solid #dedede;padding:5px; 
+}
+.uploadimg-list > .item > a{
+   width:100%; height:100%; display:block;color:#b4b4b4;font-size:14px; text-align:center;
+    background-color:#f1f1f1;
+}
+.uploadimg-list > .item > a > i { 
+    display: block; height: 68%; margin-bottom: -3px; background-size: 22px; background-position:center; background-repeat:no-repeat;
+}
+.icon-addpic{
+background-image: url('../images/icons/icon_addpic.png');
+}
+.form-item{
+    border-top: 1px solid #aae4cb; padding:10px 17px;
+}
+.form-item > label {font-size:16px; color:#0c0c0c}
+.form-item > input { border:none; background:red;font-size: 14px; padding:5px 0}
+.form-item input[type="button"],.form-item input[type="submit"] { border:none; background:red;font-size: 14px; padding:10px 0}
+
+
+
+
+
+
+.footer { height: 52px; border-top: 1px solid #dfdfdf; background-color: #fcfcfc; bottom: 0; z-index: 1; }
+.footer > a { width: 20%; text-align: center; color: #999; float: left; font-size: 14px; }
+.footer > a > i { display: block; height: 35px; margin-bottom: -3px; background-size: 23px; background-position:center; background-repeat:no-repeat }
+.footer > .active { color: #45c018; }
+.icon-release,icon-purchase,icon-homepage,.icon-exchange,icon-mes{}
+.icon-release{
+background-image: url('../images/icons/icon_release.png');
+}
+.active .icon-release{
+
+}
+.icon-purchase{
+background-image: url('../images/icons/icon_purchase.png');
+}
+.active .icon-purchase{
+
+}
+.icon-homepage{
+background-image: url('../images/icons/icon_homepage.png');
+}
+.active .icon-homepage{
+
+}
+.icon-exchange{
+background-image: url('../images/icons/icon_exchange.png');
+}
+.active .icon-exchange{
+
+}
+.icon-mes{
+background-image: url('../images/icons/icon_mes.png');
+}
+.active .icon-mes{
+
+}
+
+
+/*.wechat-list { display: block; height: 64px; padding: 8px 12px; box-sizing: border-box; border-bottom: 1px solid #d7d7d7; background-color: #fff; }
+.wechat-list:last-child { border-bottom: 0; }
+.wechat-list > img { width: 48px; height: 48px; float: left; }
+.wechat-list > .cell { padding-left: 58px; line-height: 24px; color: #333; }
+.wechat-h-time { overflow: hidden; }
+.wechat-h-time > h5 { font-size: 100%; float: left; }
+.wechat-h-time > time { font-size: 12px; color: #b9b9b9; float: right; }
+.wechat-h-time .business { color: #54688D; }
+.wechat-h-time + p { margin: 0 20px 0 0; font-size: 14px; color: #a8a8a8; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.wechat-detail { position: relative; z-index: 1; }*/
