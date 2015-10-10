@@ -1,4 +1,7 @@
-# robotstxt.org/
+﻿# robotstxt.org/
 
 User-agent: *
 Disallow:
+
+npm install --production 
+只安装dependencies依赖

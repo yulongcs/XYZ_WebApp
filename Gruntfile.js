@@ -356,7 +356,8 @@ module.exports = function(grunt) {
                         dest: "<%= config.dist %>",
                         src: [
                             "app.js",
-                            "config/{,*/}*.js"
+                            "config/{,*/}*.js",
+                            "package.json"
                         ]
                     },
                     {
