@@ -183,6 +183,13 @@ module.exports = function(grunt) {
                         src: ["*.{scss,sass}"],
                         dest: ".tmp/assets/styles",
                         ext: ".css"
+                    },
+                    {
+                        expand: true,
+                        cwd: "<%= config.app %>/assets/styles",
+                        src: ["*.{scss,sass}"],
+                        dest: "<%= config.app %>/assets/styles",
+                        ext: ".css"
                     }
                 ]
             },
