@@ -256,7 +256,7 @@ module.exports = function(grunt) {
             options: {
                 dest: "<%= config.dist %>"
             },
-            html: "<%= config.app %>/views/includes/head.jade"
+            html: "<%= config.app %>/index.html"
         },
 
         // Performs rewrites based on rev and the useminPrepare configuration
@@ -468,7 +468,6 @@ module.exports = function(grunt) {
         "modernizr",
         "filerev",
         "usemin",
-        "jadeUsemin",
         "htmlmin"
     ]);
 
