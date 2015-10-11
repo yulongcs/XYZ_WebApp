@@ -46,13 +46,13 @@ ul,ol{ margin: 0; list-style-type: none; }
 .header > h1 { line-height: 56px; font-size: 20px; text-align:center; display:inline-block; width:100%;  }
 .header > a {position:absolute; display: inline-block; width: 48px; height: 48px; background-position:center; text-indent: -9em; overflow: hidden;  }
 .header > .go-back {
-    margin:0 10px;
+    margin-left:10px;
     background-size:22px;
     background-image: url('../images/icons/icon_close.png');
     background-repeat:no-repeat;
 }
 .header > .go-user {
-    margin:0 62px;
+    margin-right:62px;
     background-size:26px;
     background-image: url('../images/icons/icon_topUser.png');
     background-repeat:no-repeat;
@@ -81,11 +81,19 @@ ul,ol{ margin: 0; list-style-type: none; }
 background-image: url('../images/icons/icon_addpic.png');
 }
 .form-item{
-    border-top: 1px solid #aae4cb; padding:10px 17px;
+    border-top: 1px solid #aae4cb; padding:10px 17px;box-sizing: border-box;
 }
-.form-item > label {font-size:16px; color:#0c0c0c}
-.form-item > input { border:none; background:red;font-size: 14px; padding:5px 0}
+.form-item > label {font-size:16px; color:#0c0c0c; float:left;line-height: 28px;}
+.form-item > .cell { padding-left: 80px; }
+.form-item > .cell > input,.form-item > .cell> textarea{ width:100%; border:none; background:red;font-size: 14px; padding:5px 0}
 .form-item input[type="button"],.form-item input[type="submit"] { border:none; background:red;font-size: 14px; padding:10px 0}
+
+.wechat-list { display: block; height: 64px; padding: 8px 12px; box-sizing: border-box; border-bottom: 1px solid #d7d7d7; background-color: #fff; }
+.wechat-list > img { width: 48px; height: 48px; float: left; }
+.wechat-list > .cell { padding-left: 58px; line-height: 24px; color: #333; }
+.wechat-h-time { overflow: hidden; }
+.wechat-h-time > h5 { font-size: 100%; float: left; }
+.wechat-h-time > time { font-size: 12px; color: #b9b9b9; float: right; }
 
 
 
