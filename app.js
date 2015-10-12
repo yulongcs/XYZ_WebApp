@@ -13,24 +13,11 @@ app.set('views', path.join(__dirname, 'app/views/pages'));
 
 app.set('port', process.env.PORT || 3000);
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
 
 
 //require('./config/routes')(app)
-
-//首页路由
-
-app.get('/', function (req, res, next) {
-    Project.findAll()
-    .success(function (projects) {
-        res.render('index', {
-             title:"indx",
-             projects: projects
-        });
-    })
-    .error(next);
-});
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('XYZ web server listening on port ' + app.get('port'));
@@ -38,22 +25,27 @@ http.createServer(app).listen(app.get('port'), function () {
 
 //初始化，处于对结构清晰的考虑，在应用设置后做;
 
-var sequelize = new Sequelize('todo-example', 'root', '123');
+var sequelize = new Sequelize('dbxyz', 'root', 'sa@123456');
+
+//http://cdn.mysql.com/Downloads/MySQL-5.6/mysql-5.6.27-winx64.zip
+//http://jingyan.baidu.com/article/f3ad7d0ffc061a09c3345bf0.html
+//mysql -u root -p
+//CREATE DATABASE IF NOT EXISTS yourdbname DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
 //首页路由
 
-app.get('/', function (req, res, next) {
+app.get('/', function(req, res, next) {
 
-    Project.findAll()
+    //Project.findAll().success(function(projects) {
+    //    console.log(projects);
 
-    .success(function (projects) {
+    //        res.render('index', { projects: projects });
 
-        res.render('index', { projects: projects });
-
+    //    })
+    //    .error(next);
+    res.render('index', {
+        title: 'index'
     })
-
-    .error(next);
-
 });
 
 //删除项目路由
@@ -79,16 +71,17 @@ app.del('/project/:id', function (req, res, next) {
 //创建项目路由
 
 app.post('/projects', function (req, res, next) {
+    console.log(req.body);
 
-    Project.build(req.body).save()
+    //Project.build(req.body).save()
 
-    .success(function (obj) {
+    //.success(function (obj) {
 
-        res.send(obj);
+    //    res.send(obj);
 
-    })
+    //})
 
-    .error(next);
+    //.error(next);
 
 });
 
@@ -156,8 +149,7 @@ app.del('/task/:id', function (req, res, next) {
 
 var Project = sequelize.define('Project', {
     title: Sequelize.STRING,
-    description: Sequelize.TEXT,
-    created: Sequelize.DATE
+    description: Sequelize.TEXT
 })
 
 var Task = sequelize.define('Task', {
