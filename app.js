@@ -1,20 +1,87 @@
 ﻿var express = require('express');
 var bodyParser = require('body-parser')
+var multer = require('multer');
+var upload = multer();
 var Sequelize = require('sequelize');
 var http = require('http');
 var path = require('path');
 
 app = express();
-
 app.use(express.static(path.join(__dirname, '')));//设置网站根目录
-
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'app/views/pages'));
-
 app.set('port', process.env.PORT || 3000);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(bodyParser.json());
+var node_env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
+
+var config = require('./config/config')[node_env];
+var dbStroage = new Sequelize(config.database, config.username, config.password, config.option);
+console.log(config.database);
+console.log(config.username);
+console.log(config.password);
+console.log(config.option);
+
+//定义任务模型
+var Project = dbStroage.define('project', {
+    title: Sequelize.STRING,
+    description: Sequelize.TEXT
+});
+
+var Task = dbStroage.define('task', {
+    title: Sequelize.STRING
+});
+
+//设置联合
+
+Task.belongsTo(Project);
+
+Project.hasMany(Task);
+
+//如果是第一次运行的话,需要用sync 方法创建表
+//dbStroage.sync()
+//    //.success(function () {
+//    //    //用sequelize创建第一条数据
+//    //    Project.create({
+//    //        title: 't1',
+//    //        description: 'd1'
+//    //    }).done(function (err, result) {
+//    //        console.log(err);
+//    //        console.log(result);
+//    //    })
+//    //})
+//    .success(function () {
+
+//    })
+//    .done(function (err, result) {
+//        console.log(err);
+//        console.log(result);
+//    })
+//    //.eror(function (err) {
+//    //    console.log(err);
+//    //});
+
+//var Task = dbStroage.define('Task', {
+//    // auto increment, primaryKey, unique
+//    id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true, unique: true },
+
+//    // comment
+//    title: { type: Sequelize.STRING, comment: 'Task title' },
+
+//    // allow null
+//    description: { type: Sequelize.TEXT, allowNull: true },
+
+//    // default value
+//    deadline: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }
+//});
+//Task.sync().on('success', function () {
+//    console.log('aa..');
+//}).on('failure', function () {
+//    console.log('bb..');
+//});
+
+
 
 
 //require('./config/routes')(app)
@@ -23,14 +90,14 @@ http.createServer(app).listen(app.get('port'), function () {
     console.log('XYZ web server listening on port ' + app.get('port'));
 });
 
-//初始化，处于对结构清晰的考虑，在应用设置后做;
 
-var sequelize = new Sequelize('dbxyz', 'root', 'sa@123456');
 
 //http://cdn.mysql.com/Downloads/MySQL-5.6/mysql-5.6.27-winx64.zip
 //http://jingyan.baidu.com/article/f3ad7d0ffc061a09c3345bf0.html
+//mysqladmin -u root password "newpass"
 //mysql -u root -p
 //CREATE DATABASE IF NOT EXISTS yourdbname DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+//http://linmomo02.iteye.com/blog/1496736
 
 //首页路由
 
@@ -43,6 +110,14 @@ app.get('/', function(req, res, next) {
 
     //    })
     //    .error(next);
+    Project.findAll()
+        .done(function (result) {
+            var data = result[0].dataValues;
+            debugger;
+
+            //  res.render('index', { projects: projects });
+
+        });
     res.render('index', {
         title: 'index'
     })
@@ -70,18 +145,27 @@ app.del('/project/:id', function (req, res, next) {
 
 //创建项目路由
 
-app.post('/projects', function (req, res, next) {
-    console.log(req.body);
+app.post('/projects', upload.array(), function (req, res, next) {
+    var pro = req.body.pro;
 
-    //Project.build(req.body).save()
+    var all = Project.findAll();
+    
+    Project.build(pro).save().on("done", function () {
+        debugger;
+    });
+        //.done(function (obj) {
+        //    debugger;
+        //    res.send(obj);
+        //});
 
-    //.success(function (obj) {
-
-    //    res.send(obj);
-
-    //})
-
-    //.error(next);
+    //Project.create({
+    //    title: pro.title,
+    //    description: pro.description
+    //}).done(function (err, result) {
+    //    debugger;
+    //    console.log(err);
+    //    console.log(result);
+    //});
 
 });
 
@@ -145,22 +229,5 @@ app.del('/task/:id', function (req, res, next) {
 
 });
 
-//定义任务模型
 
-var Project = sequelize.define('Project', {
-    title: Sequelize.STRING,
-    description: Sequelize.TEXT
-})
 
-var Task = sequelize.define('Task', {
-    title: Sequelize.STRING
-});
-
-//设置联合
-
-Task.belongsTo(Project);
-
-Project.hasMany(Task);
-
-//同步
-sequelize.sync();

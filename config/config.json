@@ -1,9 +1,53 @@
 ﻿{
-
-    "host": "localhost",
-
-    "password": "123",
-
-    "database": "cart-example"
-
+  "localhost": {
+    "username": "root",
+    "password": "sa@123456",
+    "database": "dbxyz_local",
+    "option": {
+      "dialect": "mysql",
+      "define": {
+        "timestamps": false, 
+        "freezeTableName": true
+      }
+    }
+  },
+  "development": {
+    "username": "root",
+    "password": "sa@123456",
+    "database": "dbxyz",
+    "option": {
+      "dialect": "mysql",
+      "define": {
+        "timestamps": false,
+        "freezeTableName": true
+      }
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": "sa@123456",
+    "database": "dbxyz_test",
+    "host": "127.0.0.1",
+    "option": {
+      "dialect": "mysql",
+      "define": {
+        "timestamps": false,
+        "freezeTableName": true
+      }
+    }
+  },
+  "production": {
+    "username": "root",
+    "password": "sa@123456",
+    "database": "dbxyz_pro",
+    "host": "127.0.0.1",
+    "option": {
+      "dialect": "mysql",
+      "define": {
+        "timestamps": false,
+        "freezeTableName": true
+      }
+    }
+  }
 }
+
