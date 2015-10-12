@@ -1,0 +1,9 @@
+﻿{
+
+    "host": "localhost",
+
+    "password": "123",
+
+    "database": "cart-example"
+
+}
