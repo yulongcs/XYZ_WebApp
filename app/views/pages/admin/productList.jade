@@ -1,0 +1,19 @@
+﻿extends ../layout
+
+block content
+  .container
+    .row
+      form.form-horizontal(method="post", action="/projects", enctype="multipart/form-data")
+        .form-group
+          label.col-sm-2.control-label(for="inputTitle") title
+          .col-sm-10
+            input#inputTitle.form-control(type="text", name="pro[title]")
+        .form-group
+          label.col-sm-2.control-label(for="inputDescription") description
+          .col-sm-10
+            input#inputDescription.form-control(type="text", name="pro[description]")
+        .form-group
+          .col-sm-offset-2.col-sm-10
+          button.btn.btn-default(type="submit") 录入
+
+      

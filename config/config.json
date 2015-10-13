@@ -6,7 +6,7 @@
     "option": {
       "dialect": "mysql",
       "define": {
-        "timestamps": false, 
+        "timestamps": true, 
         "freezeTableName": true
       }
     }
@@ -18,7 +18,7 @@
     "option": {
       "dialect": "mysql",
       "define": {
-        "timestamps": false,
+        "timestamps": true,
         "freezeTableName": true
       }
     }
@@ -31,7 +31,7 @@
     "option": {
       "dialect": "mysql",
       "define": {
-        "timestamps": false,
+        "timestamps": true,
         "freezeTableName": true
       }
     }
@@ -44,7 +44,7 @@
     "option": {
       "dialect": "mysql",
       "define": {
-        "timestamps": false,
+        "timestamps": true,
         "freezeTableName": true
       }
     }

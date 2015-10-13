@@ -18,13 +18,14 @@ var node_env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
 
 var config = require('./config/config')[node_env];
 var dbStroage = new Sequelize(config.database, config.username, config.password, config.option);
-console.log(config.database);
-console.log(config.username);
-console.log(config.password);
-console.log(config.option);
 
 //定义任务模型
 var Project = dbStroage.define('project', {
+    uuid: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV1,
+        primaryKey: true
+    },
     title: Sequelize.STRING,
     description: Sequelize.TEXT
 });
@@ -38,6 +39,8 @@ var Task = dbStroage.define('task', {
 Task.belongsTo(Project);
 
 Project.hasMany(Task);
+
+dbStroage.sync();
 
 //如果是第一次运行的话,需要用sync 方法创建表
 //dbStroage.sync()
@@ -95,6 +98,7 @@ http.createServer(app).listen(app.get('port'), function () {
 //http://cdn.mysql.com/Downloads/MySQL-5.6/mysql-5.6.27-winx64.zip
 //http://jingyan.baidu.com/article/f3ad7d0ffc061a09c3345bf0.html
 //mysqladmin -u root password "newpass"
+//net start mysql
 //mysql -u root -p
 //CREATE DATABASE IF NOT EXISTS yourdbname DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 //http://linmomo02.iteye.com/blog/1496736
@@ -102,25 +106,16 @@ http.createServer(app).listen(app.get('port'), function () {
 //首页路由
 
 app.get('/', function(req, res, next) {
-
-    //Project.findAll().success(function(projects) {
-    //    console.log(projects);
-
-    //        res.render('index', { projects: projects });
-
-    //    })
-    //    .error(next);
     Project.findAll()
         .done(function (result) {
-            var data = result[0].dataValues;
+            //var data = result[0].title;
             debugger;
 
-            //  res.render('index', { projects: projects });
-
+            res.render('index', {
+                title: 'index',
+                projects: result
+            });
         });
-    res.render('index', {
-        title: 'index'
-    })
 });
 
 //删除项目路由
@@ -128,17 +123,11 @@ app.get('/', function(req, res, next) {
 app.del('/project/:id', function (req, res, next) {
 
     Project.find(Number(req.params.id)).success(function (proj) {
-
         proj.destroy()
-
         .success(function () {
-
             res.rend(200);
-
         })
-
         .error(next);
-
     }).error(next);
 
 });
@@ -148,15 +137,11 @@ app.del('/project/:id', function (req, res, next) {
 app.post('/projects', upload.array(), function (req, res, next) {
     var pro = req.body.pro;
 
-    var all = Project.findAll();
-    
-    Project.build(pro).save().on("done", function () {
-        debugger;
-    });
-        //.done(function (obj) {
-        //    debugger;
-        //    res.send(obj);
-        //});
+    Project.build(pro).save()
+        .done(function(obj) {
+            debugger;
+            res.send(obj);
+        });
 
     //Project.create({
     //    title: pro.title,
@@ -231,3 +216,4 @@ app.del('/task/:id', function (req, res, next) {
 
 
 
+//npm install --production

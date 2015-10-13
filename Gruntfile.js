@@ -348,7 +348,7 @@ module.exports = function(grunt) {
                         dest: '<%= config.dist %>',
                         src: [
                             'app.js',
-                            'config/{,*/}*.js',
+                            'config/{,*/}*.*',
                             'package.json'
                         ]
                     },
@@ -475,8 +475,8 @@ module.exports = function(grunt) {
         'copy:dist',
         'modernizr',
         'filerev',
-        'usemin',
-        'htmlmin'
+        'usemin'
+        //'htmlmin'
     ]);
 
     grunt.registerTask('default', [
