@@ -3,17 +3,31 @@
 block content
   .container
     .row
-      form.form-horizontal(method="post", action="/projects", enctype="multipart/form-data")
-        .form-group
-          label.col-sm-2.control-label(for="inputTitle") title
-          .col-sm-10
-            input#inputTitle.form-control(type="text", name="pro[title]")
-        .form-group
-          label.col-sm-2.control-label(for="inputDescription") description
-          .col-sm-10
-            input#inputDescription.form-control(type="text", name="pro[description]")
-        .form-group
-          .col-sm-offset-2.col-sm-10
-          button.btn.btn-default(type="submit") 录入
-
-      
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            th 类别
+            th 电影名字
+            th 导演
+            th 国家
+            th 上映年份
+            th 录入时间
+            th pv
+            th 查看
+            th 修改
+            th 删除
+        tbody
+          each item in movies
+            tr(class="item-id-#{item._id}")
+              td #{item.category.name}
+              td #{item.title}
+              td #{item.doctor}
+              td #{item.country}
+              td #{item.year}
+              td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+              td #{item.pv}
+              td: a(target="_blank", href="/movie/#{item._id}") 查看
+              td: a(target="_blank", href="/admin/movie/update/#{item._id}") 修改
+              td
+                button.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除
+  script(src="/js/admin.js")
