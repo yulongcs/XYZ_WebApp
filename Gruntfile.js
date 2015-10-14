@@ -29,22 +29,22 @@ module.exports = function(grunt) {
                 tasks: ['wiredep']
             },
             babel: {
-                files: ['<%= config.app %>/scripts/{,*/}*.js'],
+                files: ['<%= config.app %>/scripts/{,**/}*.js'],
                 tasks: ['babel:dist']
             },
             babelTest: {
-                files: ['test/spec/{,*/}*.js'],
+                files: ['test/spec/{,**/}*.js'],
                 tasks: ['babel:test', 'test:watch']
             },
             gruntfile: {
                 files: ['Gruntfile.js']
             },
             sass: {
-                files: ['<%= config.app %>/assets/styles/{,*/}*.{scss,sass}'],
+                files: ['<%= config.app %>/assets/styles/{,**/}*.{scss,sass}'],
                 tasks: ['sass:server', 'postcss']
             },
             styles: {
-                files: ['<%= config.app %>/assets/styles/{,*/}*.css'],
+                files: ['<%= config.app %>/assets/styles/{,**/}*.css'],
                 tasks: ['newer:copy:styles', 'postcss']
             }
         },
@@ -57,10 +57,10 @@ module.exports = function(grunt) {
             livereload: {
                 options: {
                     files: [
-                        '<%= config.app %>/{,*/}*.html',
-                        '.tmp/styles/{,*/}*.css',
-                        '<%= config.app %>/images/{,*/}*',
-                        '.tmp/scripts/{,*/}*.js'
+                        '<%= config.app %>/{,**/}*.html',
+                        '.tmp/styles/{,**/}*.css',
+                        '<%= config.app %>/images/{,**/}*',
+                        '.tmp/scripts/{,**/}*.js'
                     ],
                     port: 9000,
                     server: {
@@ -114,9 +114,9 @@ module.exports = function(grunt) {
         eslint: {
             target: [
                 'Gruntfile.js',
-                '<%= config.app %>/scripts/{,*/}*.js',
+                '<%= config.app %>/scripts/{,**/}*.js',
                 '!<%= config.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
+                'test/spec/{,**/}*.js'
             ]
         },
 
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: '<%= config.app %>/scripts',
-                        src: '{,*/}*.js',
+                        src: '{,**/}*.js',
                         dest: '.tmp/scripts',
                         ext: '.js'
                     }
@@ -151,7 +151,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'test/spec',
-                        src: '{,*/}*.js',
+                        src: '{,**/}*.js',
                         dest: '.tmp/spec',
                         ext: '.js'
                     }
@@ -213,7 +213,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: '.tmp/styles/',
-                        src: '{,*/}*.css',
+                        src: '{,**/}*.css',
                         dest: '.tmp/styles/'
                     }
                 ]
@@ -230,7 +230,7 @@ module.exports = function(grunt) {
                 ignorePath: /^(\.\.\/)*\.\./
             },
             sass: {
-                src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
+                src: ['<%= config.app %>/styles/{,**/}*.{scss,sass}'],
                 ignorePath: /^(\.\.\/)+/
             }
         },
@@ -239,10 +239,10 @@ module.exports = function(grunt) {
         filerev: {
             dist: {
                 src: [
-                    '<%= config.dist %>/app/assets/scripts/{,*/}*.js',
-                    '<%= config.dist %>/app/assets/styles/{,*/}*.css',
-                    '<%= config.dist %>/app/assets/images/{,*/}*.*',
-                    '<%= config.dist %>/app/assets/styles/fonts/{,*/}*.*',
+                    '<%= config.dist %>/app/assets/scripts/{,**/}*.js',
+                    '<%= config.dist %>/app/assets/styles/{,**/}*.css',
+                    '<%= config.dist %>/app/assets/images/{,**/}*.*',
+                    '<%= config.dist %>/app/assets/styles/fonts/{,**/}*.*',
                     '<%= config.dist %>/app/assets/*.{ico,png}'
                 ]
             }
@@ -267,9 +267,9 @@ module.exports = function(grunt) {
                     '<%= config.dist %>/app/assets/styles'
                 ]
             },
-            html: ['<%= config.dist %>/app/{,*/}*.html'],
-            css: ['<%= config.dist %>/app/assets/styles/{,*/}*.css'],
-            js: ['<%= config.dist %>/app/assets/scripts/{,*/}*.js']
+            html: ['<%= config.dist %>/app/{,**/}*.html'],
+            css: ['<%= config.dist %>/app/assets/styles/{,**/}*.css'],
+            js: ['<%= config.dist %>/app/assets/scripts/{,**/}*.js']
         },
 
         jadeUsemin: {
@@ -293,7 +293,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: '<%= config.app %>/assets/images',
-                        src: '{,*/}*.{gif,jpeg,jpg,png}',
+                        src: '{,**/}*.{gif,jpeg,jpg,png}',
                         dest: '<%= config.dist %>/app/assets/images'
                     }
                 ]
@@ -306,7 +306,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: '<%= config.app %>/images',
-                        src: '{,*/}*.svg',
+                        src: '{,**/}*.svg',
                         dest: '<%= config.dist %>/app/assets/images'
                     }
                 ]
@@ -331,7 +331,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: '<%= config.dist %>/app',
-                        src: '{,*/}*.html',
+                        src: '{,**/}*.html',
                         dest: '<%= config.dist %>/app'
                     }
                 ]
@@ -348,7 +348,7 @@ module.exports = function(grunt) {
                         dest: '<%= config.dist %>',
                         src: [
                             'app.js',
-                            'config/{,*/}*.*',
+                            'config/{,**/}*.*',
                             'package.json'
                         ]
                     },
@@ -359,13 +359,13 @@ module.exports = function(grunt) {
                         dest: '<%= config.dist %>/app',
                         src: [
                             '*.{ico,png,txt}',
-                            'images/{,*/}*.webp',
-                            '{,*/}*.html',
-                            'styles/fonts/{,*/}*.*',
-                            'models/{,*/}*.js',
-                            'schemas/{,*/}*.js',
-                            'controlles/{,*/}*.js',
-                            'views/{,*/}*.jade'
+                            'images/{,**/}*.webp',
+                            '{,**/}*.html',
+                            'styles/fonts/{,**/}*.*',
+                            'models/{,**/}*.js',
+                            'schemas/{,**/}*.js',
+                            'controlles/{,**/}*.js',
+                            'views/{,**/}*.jade'
                         ]
                     },
                     {
@@ -374,8 +374,8 @@ module.exports = function(grunt) {
                         cwd: '<%= config.app %>',
                         dest: '<%= config.dist %>/app/assets',
                         src: [
-                            'images/{,*/}*.webp',
-                            'styles/fonts/{,*/}*.*'
+                            'images/{,**/}*.webp',
+                            'styles/fonts/{,**/}*.*'
                         ]
                     },
                     {
@@ -399,8 +399,8 @@ module.exports = function(grunt) {
                 outputFile: '<%= config.dist %>/app/assets/scripts/vendor/modernizr.js',
                 files: {
                     src: [
-                        '<%= config.dist %>/app/assets/scripts/{,*/}*.js',
-                        '<%= config.dist %>/app/assets/styles/{,*/}*.css',
+                        '<%= config.dist %>/app/assets/scripts/{,**/}*.js',
+                        '<%= config.dist %>/app/assets/styles/{,**/}*.css',
                         '!<%= config.dist %>/app/assets/scripts/vendor/*'
                     ]
                 },

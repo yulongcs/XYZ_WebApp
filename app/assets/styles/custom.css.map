@@ -5,8 +5,8 @@
 		"custom.scss"
 	],
 	"sourcesContent": [
-		"﻿.sidebar-menu {\r\n    width: 240px;\r\n}"
+		"﻿.sidebar-menu {\r\n    width: 240px;\r\n    .logo-env{\r\n        padding:10px 40px;\r\n    }\r\n}"
 	],
-	"mappings": "AAAA,aAAa,CAAC;EACV,KAAK,EAAE,KAAM,GAChB",
+	"mappings": "AAAA,aAAa,CAAC;EACV,KAAK,EAAE,KAAM,GAIhB;EALD,aAAa,CAET,SAAS,CAAA;IACL,OAAO,EAAC,IAAI,CAAC,IAAI,GACpB",
 	"names": []
 }
