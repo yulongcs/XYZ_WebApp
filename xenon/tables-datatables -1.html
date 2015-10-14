@@ -187,7 +187,7 @@
                     <li class="search-form always-visible">
                         <!-- You can add "always-visible" to show make the search input visible -->
                         <form method="get" action="extra-search.html">
-                            <input type="text" name="s" class="form-control search-field" placeholder="Type to search..."/>
+                            <input type="text" name="s" class="form-control search-field" placeholder="Type to search..." />
 
                             <button type="submit" class="btn btn-link">
                                 <i class="linecons-search"></i>
@@ -244,54 +244,172 @@
             </div>
 
             <!-- Removing search and results count filter -->
-        <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Removing search and results count filter</h3>
-        </div>
-        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Removing search and results count filter</h3>
+                </div>
+                <div class="panel-body">
 
-        <table class="table table-bordered table-striped" id="example-2">
-        <thead>
-        <tr>
-            <th class="no-sorting">
-                <input type="checkbox" class="cbr">
-            </th>
-            <th>Student Name</th>
-            <th>Average Grade</th>
-            <th>Curriculum / Occupation</th>
-            <th class="no-sorting">Actions</th>
-        </tr>
-        </thead>
+                    <table class="table table-bordered table-striped" id="example-2">
+                        <thead>
+                            <tr>
+                                <th class="no-sorting">
+                                    <input type="checkbox" class="cbr">
+                                </th>
+                                <th>Student Name</th>
+                                <th>Average Grade</th>
+                                <th>Curriculum / Occupation</th>
+                                <th class="no-sorting">Actions</th>
+                            </tr>
+                        </thead>
 
-        <tbody>
-            <tr>
-                <td>
-                    <input type="checkbox" class="cbr">
-                </td>
-                <td>Randy S. Smith</td>
-                <td>8.7</td>
-                <td>Social and human service</td>
-                <td>
-                    <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                        Edit
-                    </a>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="cbr">
+                                </td>
+                                <td>Randy S. Smith</td>
+                                <td>8.7</td>
+                                <td>Social and human service</td>
+                                <td>
+                                    <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
+                                        Edit
+                                    </a>
 
-                    <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                        Delete
-                    </a>
+                                    <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
+                                        Delete
+                                    </a>
 
-                    <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                        Profile
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-        </table>
+                                    <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
+                                        Profile
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-        </div>
-        </div>
+                </div>
+            </div>
 
-        <!-- Main Footer -->
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        Basic Initialization
+                    </div>
+                </div>
+
+                <div class="panel-body">
+
+                    <!-- Auto initialization -->
+                    <form action="data/upload-file.php" class="dropzone"></form>
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Custom Configuration <small>using callback methods</small>
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <script type="text/javascript">
+						jQuery(document).ready(function($)
+						{
+							var i = 1,
+								$example_dropzone_filetable = $("#example-dropzone-filetable"),
+								example_dropzone = $("#advancedDropzone").dropzone({
+								url: 'data/upload-file.php',
+
+								// Events
+								addedfile: function(file)
+								{
+									if(i == 1)
+									{
+										$example_dropzone_filetable.find('tbody').html('');
+									}
+
+									var size = parseInt(file.size/1024, 10);
+									size = size < 1024 ? (size + " KB") : (parseInt(size/1024, 10) + " MB");
+
+									var	$el = $('<tr>\
+													<td class="text-center">'+(i++)+'</td>\
+													<td>'+file.name+'</td>\
+													<td><div class="progress progress-striped"><div class="progress-bar progress-bar-warning"></div></div></td>\
+													<td>'+size+'</td>\
+													<td>Uploading...</td>\
+												</tr>');
+
+									$example_dropzone_filetable.find('tbody').append($el);
+									file.fileEntryTd = $el;
+									file.progressBar = $el.find('.progress-bar');
+								},
+
+								uploadprogress: function(file, progress, bytesSent)
+								{
+									file.progressBar.width(progress + '%');
+								},
+
+								success: function(file)
+								{
+									file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
+									file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+								},
+
+								error: function(file)
+								{
+									file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
+									file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+								}
+							});
+
+							$("#advancedDropzone").css({
+								minHeight: 200
+							});
+
+						});
+                    </script>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+
+                            <div id="advancedDropzone" class="droppable-area">
+                                Drop Files Here
+                            </div>
+
+                        </div>
+                        <div class="col-sm-9">
+
+                            <table class="table table-bordered table-striped" id="example-dropzone-filetable">
+                                <thead>
+                                    <tr>
+                                        <th width="1%" class="text-center">#</th>
+                                        <th width="50%">Name</th>
+                                        <th width="20%">Upload Progress</th>
+                                        <th>Size</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5">Files list will appear here</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Main Footer -->
             <!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
             <!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
             <!-- Or class "fixed" to  always fix the footer to the end of page -->
@@ -328,9 +446,9 @@
 
                 <script type="text/javascript">
                     // Here is just a sample how to open chat conversation box
-                    jQuery(document).ready(function($) {
+                    jQuery(document).ready(function ($) {
                         var $chatConversation = $(".chat-conversation");
-                        $(".chat-group a").on('click', function(ev) {
+                        $(".chat-group a").on('click', function (ev) {
                             ev.preventDefault();
 
                             $chatConversation.toggleClass('is-open');
@@ -338,7 +456,7 @@
                             $(".chat-conversation textarea").trigger('autosize.resize').focus();
                         });
 
-                        $(".conversation-close").on('click', function(ev) {
+                        $(".conversation-close").on('click', function (ev) {
                             ev.preventDefault();
                             $chatConversation.removeClass('is-open');
                         });
@@ -388,6 +506,9 @@
 
     </div>
 
+    <!-- Imported styles on this page -->
+    <link rel="stylesheet" href="assets/js/dropzone/css/dropzone.css">
+
     <!-- Bottom Scripts -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/TweenMax.min.js"></script>
@@ -398,43 +519,44 @@
 
     <!-- Imported scripts on this page -->
     <script src="assets/js/datatables/dataTables.bootstrap.js"></script>
+    <script src="assets/js/dropzone/dropzone.min.js"></script>
 
     <!-- JavaScripts initializations and stuff -->
     <script src="assets/js/xenon-custom.js"></script>
 
     <script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $("#example-2").dataTable({
-                    dom: "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
-                    aoColumns: [
-                        { bSortable: false },
-                        null,
-                        null,
-                        null,
-                        null
-                    ]
-                });
-
-                // Replace checkboxes when they appear
-                var $state = $("#example-2 thead input[type='checkbox']");
-
-                $("#example-2").on('draw.dt', function() {
-                    cbr_replace();
-
-                    $state.trigger('change');
-                });
-
-                // Script to select all checkboxes
-                $state.on('change', function() {
-                    var $chcks = $("#example-2 tbody input[type='checkbox']");
-
-                    if ($state.is(':checked')) {
-                        $chcks.prop('checked', true).trigger('change');
-                    } else {
-                        $chcks.prop('checked', false).trigger('change');
-                    }
-                });
+        jQuery(document).ready(function ($) {
+            $("#example-2").dataTable({
+                dom: "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+                aoColumns: [
+                    { bSortable: false },
+                    null,
+                    null,
+                    null,
+                    null
+                ]
             });
+
+            // Replace checkboxes when they appear
+            var $state = $("#example-2 thead input[type='checkbox']");
+
+            $("#example-2").on('draw.dt', function () {
+                cbr_replace();
+
+                $state.trigger('change');
+            });
+
+            // Script to select all checkboxes
+            $state.on('change', function () {
+                var $chcks = $("#example-2 tbody input[type='checkbox']");
+
+                if ($state.is(':checked')) {
+                    $chcks.prop('checked', true).trigger('change');
+                } else {
+                    $chcks.prop('checked', false).trigger('change');
+                }
+            });
+        });
     </script>
 </body>
 </html>
