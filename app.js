@@ -135,24 +135,29 @@ http.createServer(app).listen(app.get('port'), function () {
 ////创建项目路由
 
 //app.post('/projects', upload.array(), function (req, res, next) {
-//    var pro = req.body.pro;
+app.post('/projects', function (req, res, next) {
+    debugger;
+    var resource = req.files.resource;
+    debugger;
 
-//    Project.build(pro).save()
-//        .done(function(obj) {
-//            debugger;
-//            res.send(obj);
-//        });
+    //var pro = req.body.pro;
 
-//    //Project.create({
-//    //    title: pro.title,
-//    //    description: pro.description
-//    //}).done(function (err, result) {
-//    //    debugger;
-//    //    console.log(err);
-//    //    console.log(result);
-//    //});
+    //Project.build(pro).save()
+    //    .done(function(obj) {
+    //        debugger;
+    //        res.send(obj);
+    //    });
 
-//});
+    //Project.create({
+    //    title: pro.title,
+    //    description: pro.description
+    //}).done(function (err, result) {
+    //    debugger;
+    //    console.log(err);
+    //    console.log(result);
+    //});
+
+});
 
 ////展示指定项目路由
 

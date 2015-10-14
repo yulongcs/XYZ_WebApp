@@ -27,7 +27,33 @@ block content
                a(href="#").btn.btn-info.btn-sm.btn-icon.icon-left 详情
                a(href="#").btn.btn-secondary.btn-sm.btn-icon.icon-left 编辑
                a(href="#").btn.btn-danger.btn-sm.btn-icon.icon-left 删除
-               
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 上传图片
+    .panel-body
+      .row
+        .col-sm-3.text-center
+          #advancedDropzone.droppable-area 上传图片
+        .col-sm-9
+          table#example-dropzone-filetable.table.table-bordered.table-striped
+            thead
+              tr
+                th.text-center(width="1%") #
+                th(width="50%") Name
+                th(width="20%") Upload Progress
+                th Size
+                th Status
+            tbody
+              tr
+                td(colspan="5") Files list will appear here
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 上传图片
+    .panel-body
+      form#fmUpload.dropzone(action="/projects", methpd="post", enctype="multipart/form-data")
+
+  //link(rel="stylesheet", href="/bower_components/xenon/assets/js/dropzone/css/dropzone.css")
+  script(src='/bower_components/xenon/assets/js/dropzone/dropzone.min.js')
   script(type="text/javascript").
     jQuery(document).ready(function($) {
 
@@ -61,5 +87,69 @@ block content
                         $chcks.prop('checked', false).trigger('change');
                     }
                 });
+
+                var i = 1,
+                    $example_dropzone_filetable = $("#example-dropzone-filetable"),
+                    example_dropzone = $("#advancedDropzone").dropzone({
+                      url: '/projects',
+                      addedfile: function(file) {
+                                  if(i == 1)
+                                    {
+                                     $example_dropzone_filetable.find('tbody').html('');
+                                    }
+                                    var size = parseInt(file.size/1024, 10);
+                                    size = size < 1024 ? (size + " KB") : (parseInt(size/1024, 10) + " MB");
+                                    var	$el = $('<tr>\
+                                                  <td class="text-center">'+(i++)+'</td>\
+                                                  <td>'+file.name+'</td>\
+                                                  <td><div class="progress progress-striped"><div class="progress-bar progress-bar-warning"></div></div></td>\
+                                                  <td>'+size+'</td>\
+                                                  <td>Uploading...</td>\
+                                                 </tr>');
+                                        $example_dropzone_filetable.find('tbody').append($el);
+                                        file.fileEntryTd = $el;
+                                        file.progressBar = $el.find('.progress-bar');
+                                        },
+                      uploadprogress: function(file, progress, bytesSent) {
+                                           file.progressBar.width(progress + '%');
+                                          },
+                      success: function(file) {
+                                    file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
+                                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+                                    },
+                      error: function(file) {
+                                  debugger;
+                                  file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
+                                  file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+                                  }
+                    });
+
+                $("#advancedDropzone").css({
+                  minHeight: 200
+                });
+
+            $("#fmUpload").dropzone({
+              paramName: 'resource',
+              url: '/projects',
+                dictDefaultMessage: '将文件拖拽至此区域进行上传（或点击此区域）',
+                acceptedFiles: 'image/*',
+                parallelUploads: 1,
+                maxFilesize: 1,
+                maxFiles: 1,
+                init: function() { console.log("AAAAA");},
+                success: function(file, data) {
+                  console.log("dfdf");
+                  if (data.status === 1) {
+                    $scope.uploadImage = data.message;
+                    $scope.listUserImages();
+                  } else {
+                    alertService.showAlert({
+                      content: data.message,
+                      type: 'warning'
+                    });
+                    $('.dz-error-mark').show();
+                  }
+                }
             });
-   
+
+    });
