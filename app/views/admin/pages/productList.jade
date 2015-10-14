@@ -1,0 +1,65 @@
+﻿extends ../adminLayout
+
+block content
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 求购列表
+    .panel-body
+      table#example-2.table.table-bordered.table-striped
+        thead
+          tr
+            th.no-sorting
+              input.cbr(type="checkbox")
+            th 名称
+            th 详情
+            th 创建时间
+            th.no-sorting
+         tbody
+         - var products = ["a", "b", "c", "d", "e", "f", "g", "a", "b", "c", "d", "e", "f", "g","a", "b", "c", "d", "e", "f", "g"]
+         each pro in products
+           tr
+             td
+               input.cbr(type="checkbox")
+             td #{pro}AAAAAA
+             td #{pro}BBBBBBB
+             td 2015年10月14日16:13:28
+             td
+               a(href="#").btn.btn-info.btn-sm.btn-icon.icon-left 详情
+               a(href="#").btn.btn-secondary.btn-sm.btn-icon.icon-left 编辑
+               a(href="#").btn.btn-danger.btn-sm.btn-icon.icon-left 删除
+               
+  script(type="text/javascript").
+    jQuery(document).ready(function($) {
+
+                $("#example-2").dataTable({
+                    dom: "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+                    aoColumns: [
+                        { bSortable: false },
+                        null,
+                        null,
+                        null,
+                        null
+                    ]
+                });
+
+                // Replace checkboxes when they appear
+                var $state = $("#example-2 thead input[type='checkbox']");
+
+                $("#example-2").on('draw.dt', function() {
+                    cbr_replace();
+
+                    $state.trigger('change');
+                });
+
+                // Script to select all checkboxes
+                $state.on('change', function() {
+                    var $chcks = $("#example-2 tbody input[type='checkbox']");
+
+                    if ($state.is(':checked')) {
+                        $chcks.prop('checked', true).trigger('change');
+                    } else {
+                        $chcks.prop('checked', false).trigger('change');
+                    }
+                });
+            });
+   

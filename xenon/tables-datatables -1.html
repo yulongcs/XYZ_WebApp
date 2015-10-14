@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/xenon-core.css">
     <link rel="stylesheet" href="assets/css/xenon-forms.css">
-    <link rel="stylesheet" href="assets/css/xenon-components.css">
+    <!--<link rel="stylesheet" href="assets/css/xenon-components.css">
     <link rel="stylesheet" href="assets/css/xenon-skins.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/custom.css">-->
 
     <script src="assets/js/jquery-1.11.1.min.js"></script>
 
@@ -35,7 +35,7 @@
     </style>
 
 </head>
-<body class="page-body xyw">
+<body class="xyz-admin">
 
     <div class="page-container">
         <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
@@ -150,8 +150,8 @@
                         <ul class="dropdown-menu notifications">
                             <li class="top">
                                 <p class="small">
-                                    <a href="#" class="pull-right">Mark all Read</a>
                                     You have <strong>3</strong> new notifications.
+                                    <a href="#" class="pull-right">Mark all Read</a>
                                 </p>
                             </li>
                             <li>
@@ -197,7 +197,7 @@
 
                     <li class="dropdown user-profile">
                         <a href="#" data-toggle="dropdown">
-                            <img src="assets/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+                            <img src="assets/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28px" />
                             <span>
                                 Arlind Nushi
                                 <i class="fa-angle-down"></i>
@@ -205,12 +205,6 @@
                         </a>
 
                         <ul class="dropdown-menu user-profile-menu list-unstyled">
-                            <li>
-                                <a href="#settings">
-                                    <i class="fa-wrench"></i>
-                                    Settings
-                                </a>
-                            </li>
                             <li class="last">
                                 <a href="extra-lockscreen.html">
                                     <i class="fa-lock"></i>
@@ -256,41 +250,6 @@
         </div>
         <div class="panel-body">
 
-        <script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $("#example-2").dataTable({
-                    dom: "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
-                    aoColumns: [
-                        { bSortable: false },
-                        null,
-                        null,
-                        null,
-                        null
-                    ]
-                });
-
-                // Replace checkboxes when they appear
-                var $state = $("#example-2 thead input[type='checkbox']");
-
-                $("#example-2").on('draw.dt', function() {
-                    cbr_replace();
-
-                    $state.trigger('change');
-                });
-
-                // Script to select all checkboxes
-                $state.on('change', function(ev) {
-                    var $chcks = $("#example-2 tbody input[type='checkbox']");
-
-                    if ($state.is(':checked')) {
-                        $chcks.prop('checked', true).trigger('change');
-                    } else {
-                        $chcks.prop('checked', false).trigger('change');
-                    }
-                });
-            });
-        </script>
-
         <table class="table table-bordered table-striped" id="example-2">
         <thead>
         <tr>
@@ -300,1332 +259,32 @@
             <th>Student Name</th>
             <th>Average Grade</th>
             <th>Curriculum / Occupation</th>
-            <th>Actions</th>
+            <th class="no-sorting">Actions</th>
         </tr>
         </thead>
 
-        <tbody class="middle-align">
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Ellen C. Jones</td>
-            <td>7.2</td>
-            <td>Education and development manager</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Randy S. Smith</td>
-            <td>8.7</td>
-            <td>Social and human service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Jennifer J. Jefferson</td>
-            <td>10</td>
-            <td>Maxillofacial surgeon</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Carl D. Kaya</td>
-            <td>9.5</td>
-            <td>Express Merchant Service</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>Lillian J. Earl</td>
-            <td>7.6</td>
-            <td>Social and human service assistant</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="checkbox" class="cbr">
-            </td>
-            <td>April L. Baker <span class="label label-success">New Applicant</span></td>
-            <td>6.8</td>
-            <td>Set and exhibit designer</td>
-            <td>
-                <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
-                    Edit
-                </a>
-
-                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
-                    Delete
-                </a>
-
-                <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
-                    Profile
-                </a>
-            </td>
-        </tr>
-
+        <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" class="cbr">
+                </td>
+                <td>Randy S. Smith</td>
+                <td>8.7</td>
+                <td>Social and human service</td>
+                <td>
+                    <a href="#" class="btn btn-secondary btn-sm btn-icon icon-left">
+                        Edit
+                    </a>
+
+                    <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
+                        Delete
+                    </a>
+
+                    <a href="#" class="btn btn-info btn-sm btn-icon icon-left">
+                        Profile
+                    </a>
+                </td>
+            </tr>
         </tbody>
         </table>
 
@@ -1670,18 +329,18 @@
                 <script type="text/javascript">
                     // Here is just a sample how to open chat conversation box
                     jQuery(document).ready(function($) {
-                        var $chat_conversation = $(".chat-conversation");
+                        var $chatConversation = $(".chat-conversation");
                         $(".chat-group a").on('click', function(ev) {
                             ev.preventDefault();
 
-                            $chat_conversation.toggleClass('is-open');
+                            $chatConversation.toggleClass('is-open');
 
                             $(".chat-conversation textarea").trigger('autosize.resize').focus();
                         });
 
                         $(".conversation-close").on('click', function(ev) {
                             ev.preventDefault();
-                            $chat_conversation.removeClass('is-open');
+                            $chatConversation.removeClass('is-open');
                         });
                     });
                 </script>
@@ -1729,27 +388,53 @@
 
     </div>
 
-    <!-- Imported styles on this page -->
-    <link rel="stylesheet" href="assets/js/datatables/dataTables.bootstrap.css">
-
     <!-- Bottom Scripts -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/TweenMax.min.js"></script>
     <script src="assets/js/resizeable.js"></script>
-    <script src="assets/js/joinable.js"></script>
-    <script src="assets/js/xenon-api.js"></script>
     <script src="assets/js/xenon-toggles.js"></script>
     <script src="assets/js/datatables/js/jquery.dataTables.min.js"></script>
 
 
     <!-- Imported scripts on this page -->
     <script src="assets/js/datatables/dataTables.bootstrap.js"></script>
-    <script src="assets/js/datatables/yadcf/jquery.dataTables.yadcf.js"></script>
-    <script src="assets/js/datatables/tabletools/dataTables.tableTools.min.js"></script>
-
 
     <!-- JavaScripts initializations and stuff -->
     <script src="assets/js/xenon-custom.js"></script>
 
+    <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $("#example-2").dataTable({
+                    dom: "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+                    aoColumns: [
+                        { bSortable: false },
+                        null,
+                        null,
+                        null,
+                        null
+                    ]
+                });
+
+                // Replace checkboxes when they appear
+                var $state = $("#example-2 thead input[type='checkbox']");
+
+                $("#example-2").on('draw.dt', function() {
+                    cbr_replace();
+
+                    $state.trigger('change');
+                });
+
+                // Script to select all checkboxes
+                $state.on('change', function() {
+                    var $chcks = $("#example-2 tbody input[type='checkbox']");
+
+                    if ($state.is(':checked')) {
+                        $chcks.prop('checked', true).trigger('change');
+                    } else {
+                        $chcks.prop('checked', false).trigger('change');
+                    }
+                });
+            });
+    </script>
 </body>
 </html>

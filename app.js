@@ -9,7 +9,7 @@ var path = require('path');
 app = express();
 app.use(express.static(path.join(__dirname, '')));//设置网站根目录
 app.set('view engine', 'jade');
-app.set('views', path.join(__dirname, 'app/views/pages'));
+app.set('views', path.join(__dirname, 'app/views'));
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -87,7 +87,7 @@ dbStroage.sync();
 
 
 
-//require('./config/routes')(app)
+require('./config/routes')(app)
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('XYZ web server listening on port ' + app.get('port'));
@@ -105,114 +105,114 @@ http.createServer(app).listen(app.get('port'), function () {
 
 //首页路由
 
-app.get('/', function(req, res, next) {
-    Project.findAll()
-        .done(function (result) {
-            //var data = result[0].title;
-            debugger;
+//app.get('/', function(req, res, next) {
+//    Project.findAll()
+//        .done(function (result) {
+//            //var data = result[0].title;
+//            debugger;
 
-            res.render('index', {
-                title: 'index',
-                projects: result
-            });
-        });
-});
+//            res.render('index', {
+//                title: 'index',
+//                projects: result
+//            });
+//        });
+//});
 
-//删除项目路由
+////删除项目路由
 
-app.del('/project/:id', function (req, res, next) {
+//app.del('/project/:id', function (req, res, next) {
 
-    Project.find(Number(req.params.id)).success(function (proj) {
-        proj.destroy()
-        .success(function () {
-            res.rend(200);
-        })
-        .error(next);
-    }).error(next);
+//    Project.find(Number(req.params.id)).success(function (proj) {
+//        proj.destroy()
+//        .success(function () {
+//            res.rend(200);
+//        })
+//        .error(next);
+//    }).error(next);
 
-});
+//});
 
-//创建项目路由
+////创建项目路由
 
-app.post('/projects', upload.array(), function (req, res, next) {
-    var pro = req.body.pro;
+//app.post('/projects', upload.array(), function (req, res, next) {
+//    var pro = req.body.pro;
 
-    Project.build(pro).save()
-        .done(function(obj) {
-            debugger;
-            res.send(obj);
-        });
+//    Project.build(pro).save()
+//        .done(function(obj) {
+//            debugger;
+//            res.send(obj);
+//        });
 
-    //Project.create({
-    //    title: pro.title,
-    //    description: pro.description
-    //}).done(function (err, result) {
-    //    debugger;
-    //    console.log(err);
-    //    console.log(result);
-    //});
+//    //Project.create({
+//    //    title: pro.title,
+//    //    description: pro.description
+//    //}).done(function (err, result) {
+//    //    debugger;
+//    //    console.log(err);
+//    //    console.log(result);
+//    //});
 
-});
+//});
 
-//展示指定项目路由
+////展示指定项目路由
 
-app.get('/project/:id/tasks', function (req, res, next) {
+//app.get('/project/:id/tasks', function (req, res, next) {
 
-    Project.find(Number(req.params.id))
+//    Project.find(Number(req.params.id))
 
-    .success(function (project) {
+//    .success(function (project) {
 
-        project.getTasks().on('success', function (tasks) {
+//        project.getTasks().on('success', function (tasks) {
 
-            res.render('tasks', { project: project, tasks: tasks });
+//            res.render('tasks', { project: project, tasks: tasks });
 
-        })
+//        })
 
-    })
+//    })
 
-    .error(next);
+//    .error(next);
 
 
 
-});
+//});
 
-//为指定项目添加任务
+////为指定项目添加任务
 
-app.post('/project/:id/tasks', function (req, res, next) {
+//app.post('/project/:id/tasks', function (req, res, next) {
 
-    res.body.ProjectId = req.params.id;
+//    res.body.ProjectId = req.params.id;
 
-    Task.build(req.body).save()
+//    Task.build(req.body).save()
 
-    .success(function (obj) {
+//    .success(function (obj) {
 
-        res.send(obj);
+//        res.send(obj);
 
-    })
+//    })
 
-    .error(next);
+//    .error(next);
 
-});
+//});
 
-//删除任务路由
+////删除任务路由
 
-app.del('/task/:id', function (req, res, next) {
+//app.del('/task/:id', function (req, res, next) {
 
-    Task.find(Number(req.params.id)).success(function (task) {
+//    Task.find(Number(req.params.id)).success(function (task) {
 
-        task.destroy()
+//        task.destroy()
 
-        .success(function () {
+//        .success(function () {
 
-            res.send(200);
+//            res.send(200);
 
-        })
+//        })
 
-        .error(err);
+//        .error(err);
 
-    }).error(next);
+//    }).error(next);
 
-});
+//});
 
 
 

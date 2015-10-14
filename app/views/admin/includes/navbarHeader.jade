@@ -1,0 +1,66 @@
+﻿nav(role="navigation").navbar.user-info-navbar
+  ul.user-info-menu.left-links.list-inline.list-unstyled
+    li.hidden-sm.hidden-xs
+      a(href="#", data-toggle="sidebar")
+        i.fa-bars
+    li.dropdown.hover-line
+      a(href="#", data-toggle="dropdown")
+        i.fa-envelope-o
+        span.badge.badge-green 2
+      ul.dropdown-menu.messages
+        li
+          ul.dropdown-menu-list.list-unstyled.ps-scrollbar
+            li.active
+              a(href="#")
+                span.line
+                  strong 邮件1
+                  span.light.small - 昨天
+                span.line.desc.small 邮件信息邮件信息邮件信息邮件信息
+            li
+              a(href="#")
+                span.line
+                  strong 邮件2
+                  span.light.small - 前天
+                span.line.desc.small 邮件信息邮件信息邮件信息邮件信息
+        li.external
+          a(href="#")
+            span 所有信息
+            i.fa-link-ext
+    li.dropdown.hover-line
+      a(href="#", data-toggle="dropdown")
+        i.fa-bell-o
+        span.badge.badge-purple 1
+      ul.dropdown-menu.notifications
+        li.top
+          p.small 你有 <strong>3</strong> 条消息通知
+            a(href="#").pull-right 全部设为已读
+        li
+          ul.dropdown-menu-list.list-unstyled.ps-scrollbar
+            li.notification-danger
+              a(href="#")
+                i.fa-calendar
+                span.line 小明发布了一个产品
+                span.line.small.time 9小时前
+        li.external
+          a(href="#")
+            span 查看所有通知
+            i.fa-link-ext
+  ul.user-info-menu.right-links.list-inline.list-unstyled
+    li.search-form.always-visible
+      form(method="get", action="extra-search.html")
+        input.form-control.search-field(type="text", name="s", placeholder="搜索...")
+        button.btn.btn-link(type="submit")
+          i.linecons-search
+    li.dropdown.user-profile
+      a(href="#", data-toggle="dropdown")
+        img.img-circle.img-inline.userpic-32(src="/xenon/assets/images/user-4.png", alt="user-image", width="28")
+        span 天即可
+          i.fa-angle-down
+      ul.dropdown-menu.user-profile-menu.list-unstyled
+        li.last
+          a(href="#")
+            i.fa-lock
+            span 注销
+    li
+      a(href="#", data-toggle="chat")
+        i.fa-comments-o
