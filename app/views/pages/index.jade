@@ -5,13 +5,22 @@ block content
     .row
       form.form-horizontal(method="post", action="/projects", enctype="multipart/form-data")
         .form-group
-          label.col-sm-2.control-label(for="inputTitle") title
+          label.col-sm-2.control-label(for="inputTitle") 标题
           .col-sm-10
             input#inputTitle.form-control(type="text", name="pro[title]")
         .form-group
-          label.col-sm-2.control-label(for="inputDescription") description
+          label.col-sm-2.control-label(for="inputDescription") 详情
           .col-sm-10
             input#inputDescription.form-control(type="text", name="pro[description]")
+        .form-group
+          label.col-sm-2.control-label(for="uploadPoster") 上传图片
+          .col-sm-10
+            input#uploadPoster(type="file", name="uploadPoster")
+        .form-group
+          label.col-sm-2.control-label(for="uploadPoster") 上传图片 
+          .col-sm-10
+            input#uploadPoster(type="file", name="uploadPoster") 
+
         .form-group
           .col-sm-offset-2.col-sm-10
           button.btn.btn-default(type="submit") 录入

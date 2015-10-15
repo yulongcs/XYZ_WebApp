@@ -46,13 +46,14 @@ block content
             tbody
               tr
                 td(colspan="5") Files list will appear here
+    #ShowImage
   .panel.panel-default
     .panel-heading
       h3.panel-title 上传图片
     .panel-body
       form#fmUpload.dropzone(action="/projects", methpd="post", enctype="multipart/form-data")
 
-  //link(rel="stylesheet", href="/bower_components/xenon/assets/js/dropzone/css/dropzone.css")
+  link(rel="stylesheet", href="/bower_components/xenon/assets/js/dropzone/css/dropzone.css")
   script(src='/bower_components/xenon/assets/js/dropzone/dropzone.min.js')
   script(type="text/javascript").
     jQuery(document).ready(function($) {
@@ -91,6 +92,8 @@ block content
                 var i = 1,
                     $example_dropzone_filetable = $("#example-dropzone-filetable"),
                     example_dropzone = $("#advancedDropzone").dropzone({
+                      paramName: "file", // defalut:"file", The name that will be used to transfer the file
+                      maxFilesize: 0.08, // MB
                       url: '/projects',
                       addedfile: function(file) {
                                   if(i == 1)
@@ -113,11 +116,13 @@ block content
                       uploadprogress: function(file, progress, bytesSent) {
                                            file.progressBar.width(progress + '%');
                                           },
-                      success: function(file) {
+                      success: function(file,data) {
+                                    debugger;
+                                    $("#ShowImage").html('<img alt="user-image" src="/'+ data.fileUrl +'">');
                                     file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
                                     file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
                                     },
-                      error: function(file) {
+                      error: function(file,msg) {
                                   debugger;
                                   file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
                                   file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
@@ -127,29 +132,5 @@ block content
                 $("#advancedDropzone").css({
                   minHeight: 200
                 });
-
-            $("#fmUpload").dropzone({
-              paramName: 'resource',
-              url: '/projects',
-                dictDefaultMessage: '将文件拖拽至此区域进行上传（或点击此区域）',
-                acceptedFiles: 'image/*',
-                parallelUploads: 1,
-                maxFilesize: 1,
-                maxFiles: 1,
-                init: function() { console.log("AAAAA");},
-                success: function(file, data) {
-                  console.log("dfdf");
-                  if (data.status === 1) {
-                    $scope.uploadImage = data.message;
-                    $scope.listUserImages();
-                  } else {
-                    alertService.showAlert({
-                      content: data.message,
-                      type: 'warning'
-                    });
-                    $('.dz-error-mark').show();
-                  }
-                }
-            });
 
     });
