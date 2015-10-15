@@ -1,7 +1,7 @@
 ﻿var express = require('express');
 var bodyParser = require('body-parser')
 var multer = require('multer');
-var upload = multer();
+var upload = multer({ dest: 'uploads/' })
 var Sequelize = require('sequelize');
 var http = require('http');
 var path = require('path');
@@ -133,31 +133,28 @@ http.createServer(app).listen(app.get('port'), function () {
 //});
 
 ////创建项目路由
+//https://www.npmjs.com/package/multer
 
-//app.post('/projects', upload.array(), function (req, res, next) {
-app.post('/projects', function (req, res, next) {
-    debugger;
-    var resource = req.files.resource;
-    debugger;
+app.post('/projects', upload.single('file'), function (req, res, next) {
+    // req.file is the `avatar` file 
+    // req.body will hold the text fields, if there were any 
+    var filePath = req.file.path;
 
-    //var pro = req.body.pro;
-
-    //Project.build(pro).save()
-    //    .done(function(obj) {
-    //        debugger;
-    //        res.send(obj);
-    //    });
-
-    //Project.create({
-    //    title: pro.title,
-    //    description: pro.description
-    //}).done(function (err, result) {
-    //    debugger;
-    //    console.log(err);
-    //    console.log(result);
-    //});
+    res.send({ fileUrl: filePath });
 
 });
+
+app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
+    // req.files is array of `photos` files 
+    // req.body will contain the text fields, if there were any 
+})
+
+var cpUpload = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
+app.post('/cool-profile', cpUpload, function(req, res, next) {
+  //  req.files['avatar'][0] -> File 
+  //  req.files['gallery'] -> Array 
+})
+
 
 ////展示指定项目路由
 
