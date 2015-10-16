@@ -4,10 +4,8 @@ block content
   .content
     .uploadimg-list
       img(src = "/app/assets/images/Produc1_303x301.jpg")
-      .item.droppable-area
-        //- a(href="javasrcript:")
-        i.icon-addpic
-        span 上传图
+      .item
+        #advancedDropzone.advanced-area 上传图
     .clearfix.margin-b
     table#example-dropzone-filetable.table.table-bordered.table-striped
       thead
@@ -21,6 +19,16 @@ block content
          tr
            td(colspan="5") Files list will appear here
     #ShowImage
+    #modal-1.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+            h4.modal-title Basic Modal
+          .modal-body Hello
+          .modal-footer
+            button.btn.btn-white(type="button", data-dismiss="modal") Close
+            button.btn.btn-info(type="button") Save changes
     form.dropzone(action="/exchange", methpd="post", enctype="multipart/form-data")
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
@@ -76,13 +84,14 @@ block content
            .col-xs-6.align-c
              button.btn.btn-green 发&nbsp;&nbsp;&nbsp;&nbsp;布
 
-  script(src='/bower_components/xenon/assets/js/dropzone/dropzone.min.js')
-script(type = "text/javascript").
+  script(type = "text/javascript").
     jQuery(document).ready(function($) {
-        var $example_dropzone_filetable = $("#example-dropzone-filetable"),
+        var i = 1,
+            $example_dropzone_filetable = $("#example-dropzone-filetable"),
+            $advancedDropzone = $("#advancedDropzone"),
             example_dropzone = $("#advancedDropzone").dropzone({
                 paramName: "file", // defalut:"file", The name that will be used to transfer the file
-                maxFilesize: 0.08, // MB
+                maxFilesize: 10, // MB
                 url: '/projects',
                 addedfile: function(file) {
                     if (i == 1) {
@@ -105,13 +114,14 @@ script(type = "text/javascript").
                     file.progressBar.width(progress + '%');
                 },
                 success: function(file, data) {
-                    $("#ShowImage").html('<img alt="user-image" src="/' + data.fileUrl + '">');
+                    $advancedDropzone.parent().before('<img alt="user-image" src="/' + data.fileUrl + '">');
                     file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
                     file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
                 },
                 error: function(file, msg) {
-                    file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
-                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+                   jQuery('#modal-1').modal('show', {backdrop: 'fade'});
+                   file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
+                   file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
                 }
             });
     });
