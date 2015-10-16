@@ -5,6 +5,8 @@ html
     title #{title}
     include ./includes/head
   body
-    include ./includes/header
-    block content
-    include ./includes/footer
+    .page
+      include ./includes/header
+      block content
+      include ./includes/footer
+    include ./includes/footscript

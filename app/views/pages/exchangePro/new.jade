@@ -1,0 +1,117 @@
+﻿extends ../../layout
+
+block content
+  .content
+    .uploadimg-list
+      img(src = "/app/assets/images/Produc1_303x301.jpg")
+      .item.droppable-area
+        //- a(href="javasrcript:")
+        i.icon-addpic
+        span 上传图
+    .clearfix.margin-b
+    table#example-dropzone-filetable.table.table-bordered.table-striped
+      thead
+        tr
+          th.text-center(width="1%") #
+          th(width="50%") Name
+          th(width="20%") Upload Progress
+          th Size
+          th Status
+       tbody
+         tr
+           td(colspan="5") Files list will appear here
+    #ShowImage
+    form.dropzone(action="/exchange", methpd="post", enctype="multipart/form-data")
+      .form-item
+        label.control-label(for="inputTitle") 宝贝名：
+        .cell
+          input#inputTitle.form-control(type="text", name="exchange[title]", placeholder="闲余的名称和类型（6-20字）")
+      .form-item
+        label.control-label(for="inputClaim") 条件：
+        .cell
+          textarea#inputClaim.form-control(type="text", rows="3", name="exchange[claim]", placeholder="为你出售的宝贝吆喝几句（20字以内）")
+      .form-item
+         label.control-label(for="selClassification") 分类：
+         .cell
+           select#selClassification.form-control
+             option 数据
+             option 电子产品
+       .form-item
+         label.control-label(for="selClassification") 成色：
+         .cell
+           select#selClassification.form-control(name="exchange[cl]")
+             option 9成新
+             option 7成新
+             option 4成新
+             option 2成新
+       .form-item
+         label.control-label(for="selCycle") 周期：
+         .cell
+           select#selCycle.form-control(name="exchange[cycle]")
+             option 一个月
+             option 2周
+             option 5天
+       .form-item
+         label.control-label(for="selExpect") 期待：
+         .cell
+           select#selExpect.form-control(name="exchange[expect]")
+             option 一个月
+             option 2周
+             option 5天
+       .form-item
+         label.control-label(for="inputPhoneNumber") 手机号：
+         .cell
+           input#inputPhoneNumber.form-control(type="text", name="exchange[phoneNumber]", placeholder="手机号")
+       .form-item
+         label.control-label(for="inputContact") 联系人：
+         .cell
+           input#inputContact.form-control(type="text", name="exchange[contact]", placeholder="联系人")
+       .form-item
+         label.control-label(for="inputLoco ") 交换地点：
+         .cell
+           input#inputLoco.form-control(type="text", name="exchange[loco]", placeholder="填写你希望的交易地点")
+        .form-item.row
+           .col-xs-6.align-c
+             button.btn.btn-green 重&nbsp;&nbsp;&nbsp;&nbsp;填
+           .col-xs-6.align-c
+             button.btn.btn-green 发&nbsp;&nbsp;&nbsp;&nbsp;布
+
+  script(src='/bower_components/xenon/assets/js/dropzone/dropzone.min.js')
+script(type = "text/javascript").
+    jQuery(document).ready(function($) {
+        var $example_dropzone_filetable = $("#example-dropzone-filetable"),
+            example_dropzone = $("#advancedDropzone").dropzone({
+                paramName: "file", // defalut:"file", The name that will be used to transfer the file
+                maxFilesize: 0.08, // MB
+                url: '/projects',
+                addedfile: function(file) {
+                    if (i == 1) {
+                        $example_dropzone_filetable.find('tbody').html('');
+                    }
+                    var size = parseInt(file.size / 1024, 10);
+                    size = size < 1024 ? (size + " KB") : (parseInt(size / 1024, 10) + " MB");
+                    var $el = $('<tr>\
+                                           <td class="text-center">' + (i++) + '</td>\
+                                           <td>' + file.name + '</td>\
+                                           <td><div class="progress progress-striped"><div class="progress-bar progress-bar-warning"></div></div></td>\
+                                           <td>' + size + '</td>\
+                                           <td>Uploading...</td>\
+                                         </tr>');
+                    $example_dropzone_filetable.find('tbody').append($el);
+                    file.fileEntryTd = $el;
+                    file.progressBar = $el.find('.progress-bar');
+                },
+                uploadprogress: function(file, progress, bytesSent) {
+                    file.progressBar.width(progress + '%');
+                },
+                success: function(file, data) {
+                    $("#ShowImage").html('<img alt="user-image" src="/' + data.fileUrl + '">');
+                    file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
+                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+                },
+                error: function(file, msg) {
+                    file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
+                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+                }
+            });
+    });
