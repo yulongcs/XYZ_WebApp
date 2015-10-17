@@ -3,33 +3,11 @@
 block content
   .content
     .uploadimg-list
-      img(src = "/app/assets/images/Produc1_303x301.jpg")
       .item
         #advancedDropzone.advanced-area 上传图
     .clearfix.margin-b
-    table#example-dropzone-filetable.table.table-bordered.table-striped
-      thead
-        tr
-          th.text-center(width="1%") #
-          th(width="50%") Name
-          th(width="20%") Upload Progress
-          th Size
-          th Status
-       tbody
-         tr
-           td(colspan="5") Files list will appear here
-    #ShowImage
-    #modal-1.modal.fade
-      .modal-dialog
-        .modal-content
-          .modal-header
-            button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
-            h4.modal-title Basic Modal
-          .modal-body Hello
-          .modal-footer
-            button.btn.btn-white(type="button", data-dismiss="modal") Close
-            button.btn.btn-info(type="button") Save changes
-    form.dropzone(action="/exchange", methpd="post", enctype="multipart/form-data")
+    form(action="/exchange", methpd="post", enctype="multipart/form-data")
+      input#hdUploadFiles(type="hidden", name="exchange[_files]")
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
         .cell
@@ -41,13 +19,13 @@ block content
       .form-item
          label.control-label(for="selClassification") 分类：
          .cell
-           select#selClassification.form-control
+           select#selClassification.form-control(name="exchange[classification]")
              option 数据
              option 电子产品
        .form-item
-         label.control-label(for="selClassification") 成色：
+         label.control-label(for="selDegree") 成色：
          .cell
-           select#selClassification.form-control(name="exchange[cl]")
+           select#selDegree.form-control(name="exchange[degree]")
              option 9成新
              option 7成新
              option 4成新
@@ -80,43 +58,38 @@ block content
            input#inputLoco.form-control(type="text", name="exchange[loco]", placeholder="填写你希望的交易地点")
         .form-item.row
            .col-xs-6.align-c
-             button.btn.btn-green 重&nbsp;&nbsp;&nbsp;&nbsp;填
+             button.btn.btn-green.brs5 重&nbsp;&nbsp;&nbsp;&nbsp;填
            .col-xs-6.align-c
-             button.btn.btn-green 发&nbsp;&nbsp;&nbsp;&nbsp;布
-
+             button.btn.btn-green.brs5 发&nbsp;&nbsp;&nbsp;&nbsp;布
+  #modal-1.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+            h4.modal-title Basic Modal
+          .modal-body Hello
+          .modal-footer
+            button.btn.btn-white(type="button", data-dismiss="modal") Close
+            button.btn.btn-info(type="button") Save changes
   script(type = "text/javascript").
     jQuery(document).ready(function($) {
-        var i = 1,
-            $example_dropzone_filetable = $("#example-dropzone-filetable"),
-            $advancedDropzone = $("#advancedDropzone"),
+        var $advancedDropzone = $("#advancedDropzone"),
+            $hdUploadFiles = $("#hdUploadFiles"),
             example_dropzone = $("#advancedDropzone").dropzone({
                 paramName: "file", // defalut:"file", The name that will be used to transfer the file
                 maxFilesize: 10, // MB
                 url: '/projects',
                 addedfile: function(file) {
-                    if (i == 1) {
-                        $example_dropzone_filetable.find('tbody').html('');
-                    }
-                    var size = parseInt(file.size / 1024, 10);
-                    size = size < 1024 ? (size + " KB") : (parseInt(size / 1024, 10) + " MB");
-                    var $el = $('<tr>\
-                                           <td class="text-center">' + (i++) + '</td>\
-                                           <td>' + file.name + '</td>\
-                                           <td><div class="progress progress-striped"><div class="progress-bar progress-bar-warning"></div></div></td>\
-                                           <td>' + size + '</td>\
-                                           <td>Uploading...</td>\
-                                         </tr>');
-                    $example_dropzone_filetable.find('tbody').append($el);
-                    file.fileEntryTd = $el;
-                    file.progressBar = $el.find('.progress-bar');
+
                 },
                 uploadprogress: function(file, progress, bytesSent) {
-                    file.progressBar.width(progress + '%');
+
                 },
                 success: function(file, data) {
-                    $advancedDropzone.parent().before('<img alt="user-image" src="/' + data.fileUrl + '">');
-                    file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
-                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+                    var jsonFilesArr = $hdUploadFiles.val() == "" ? new Array():JSON.parse($hdUploadFiles.val());
+                    jsonFilesArr.push(data);
+                    $advancedDropzone.parent().before('<img alt="user-image" src="/' + data.path + '">');
+                    $hdUploadFiles.val(JSON.stringify(jsonFilesArr));
                 },
                 error: function(file, msg) {
                    jQuery('#modal-1').modal('show', {backdrop: 'fade'});

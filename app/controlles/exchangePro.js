@@ -5,11 +5,10 @@ exports.new = function(req, res) {
     })
 }
 
-exports.savePoster = function (req, res, next) {
-    next();
-}
 
 exports.save = function (req, res) {
+    var data = req.body;
+    debugger;
     res.send();
 }
 

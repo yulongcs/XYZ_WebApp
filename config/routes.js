@@ -9,7 +9,7 @@ module.exports = function (app) {
 
     //Exchange
     app.get('/exchange/new', ExchangePro.new)
-    app.post('/exchange', ExchangePro.savePoster, ExchangePro.save)
+    app.post('/exchange', ExchangePro.save)
      
 
 
