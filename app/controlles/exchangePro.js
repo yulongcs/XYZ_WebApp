@@ -1,4 +1,5 @@
-﻿
+﻿var models = require('../models');
+
 exports.new = function(req, res) {
     res.render('pages/exchangePro/new', {
         title: '交换'
@@ -7,9 +8,14 @@ exports.new = function(req, res) {
 
 
 exports.save = function (req, res) {
-    var data = req.body;
+    var data = req.body.exchange;
     debugger;
-    res.send();
+    models.Exchange.build(data).save()
+        .done(function (result) {
+            var dataValue = result.dataValues;
+            debugger;
+            res.redirect('/');
+        });
 }
 
 

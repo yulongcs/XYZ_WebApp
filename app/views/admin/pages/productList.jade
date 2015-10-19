@@ -16,13 +16,13 @@ block content
             th.no-sorting
          tbody
          - var products = ["a", "b", "c", "d", "e", "f", "g", "a", "b", "c", "d", "e", "f", "g","a", "b", "c", "d", "e", "f", "g"]
-         each pro in products
+         each item in Exchanges
            tr
              td
                input.cbr(type="checkbox")
-             td #{pro}AAAAAA
-             td #{pro}BBBBBBB
-             td 2015年10月14日16:13:28
+             td #{item.title}
+             td #{item.classification}
+             td #{item.createdAt}
              td
                a(href="#").btn.btn-info.btn-sm.btn-icon.icon-left 详情
                a(href="#").btn.btn-secondary.btn-sm.btn-icon.icon-left 编辑

@@ -14,84 +14,27 @@ app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var node_env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
-
-var config = require('./config/config')[node_env];
-var dbStroage = new Sequelize(config.database, config.username, config.password, config.option);
-
-//定义任务模型
-var Project = dbStroage.define('project', {
-    uuid: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV1,
-        primaryKey: true
-    },
-    title: Sequelize.STRING,
-    description: Sequelize.TEXT
-});
-
-var Task = dbStroage.define('task', {
-    title: Sequelize.STRING
-});
-
-//设置联合
-
-Task.belongsTo(Project);
-
-Project.hasMany(Task);
-
-dbStroage.sync();
-
-//如果是第一次运行的话,需要用sync 方法创建表
-//dbStroage.sync()
-//    //.success(function () {
-//    //    //用sequelize创建第一条数据
-//    //    Project.create({
-//    //        title: 't1',
-//    //        description: 'd1'
-//    //    }).done(function (err, result) {
-//    //        console.log(err);
-//    //        console.log(result);
-//    //    })
-//    //})
-//    .success(function () {
-
-//    })
-//    .done(function (err, result) {
-//        console.log(err);
-//        console.log(result);
-//    })
-//    //.eror(function (err) {
-//    //    console.log(err);
-//    //});
-
-//var Task = dbStroage.define('Task', {
-//    // auto increment, primaryKey, unique
-//    id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true, unique: true },
-
-//    // comment
-//    title: { type: Sequelize.STRING, comment: 'Task title' },
-
-//    // allow null
-//    description: { type: Sequelize.TEXT, allowNull: true },
-
-//    // default value
-//    deadline: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }
-//});
-//Task.sync().on('success', function () {
-//    console.log('aa..');
-//}).on('failure', function () {
-//    console.log('bb..');
-//});
-
-
-
-
 require('./config/routes')(app)
 
-http.createServer(app).listen(app.get('port'), function () {
-    console.log('XYZ web server listening on port ' + app.get('port'));
+//http.createServer(app).listen(app.get('port'), function () {
+//    console.log('XYZ web server listening on port ' + app.get('port'));
+//});
+
+var models = require("./app/models");
+models.sequelize.sync().then(function () {
+    var server = app.listen(app.get('port'), function () {
+        console.log('Express server listening on port ' + server.address().port);
+    });
 });
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+module.exports = app;
 
 
 

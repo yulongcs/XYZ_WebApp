@@ -1,19 +1,24 @@
 ﻿"use strict";
 
 module.exports = function (sequelize, DataTypes) {
-    var File = sequelize.define("User", {
-        fieldname: DataTypes.STRING,
-        originalname: DataTypes.STRING,
-        encoding: DataTypes.STRING,
-        mimetype: DataTypes.STRING,
-        destination: DataTypes.STRING,
-        filename: DataTypes.STRING,
-        path: DataTypes.STRING,
-        size: DataTypes.INTEGER
+    var File = sequelize.define("File", {
+        fieldname: { type: DataTypes.STRING(100), allowNull: false },
+        originalname: { type: DataTypes.STRING(100), allowNull: false },
+        encoding: { type: DataTypes.STRING(100), allowNull: false },
+        mimetype: { type: DataTypes.STRING(100), allowNull: false },
+        destination: { type: DataTypes.STRING(100), allowNull: false },
+        filename: { type: DataTypes.STRING(100), allowNull: false },
+        path: { type: DataTypes.STRING(100), allowNull: false },
+        size: { type: DataTypes.INTEGER, allowNull: false }
     }, {
         classMethods: {
-            associate: function (models) {
-                User.hasMany(models.Task)
+            associate: function(models) {
+                File.belongsTo(models.Exchange, {
+                    onDelete: "CASCADE",
+                    foreignKey: {
+                        allowNull: false
+                    }
+                });
             }
         }
     });

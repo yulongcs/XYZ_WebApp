@@ -4,10 +4,10 @@ var AdminProduct = require('../app/controlles/admin/product.js')
 
 module.exports = function (app) {
 
-    // Index************
+    //// Index************
     app.get('/', Index.index)
 
-    //Exchange
+    ////Exchange
     app.get('/exchange/new', ExchangePro.new)
     app.post('/exchange', ExchangePro.save)
      
@@ -18,10 +18,10 @@ module.exports = function (app) {
 
 
 
-    //Admin ************************************************************************
+    ////Admin ************************************************************************
 
-    //product
-      //list
+    ////product
+    //  //list
       app.get('/admin/product', AdminProduct.list)
 
 }

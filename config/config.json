@@ -14,7 +14,7 @@
   "development": {
     "username": "root",
     "password": "sa@123456",
-    "database": "dbxyz",
+    "database": "dbxyz_dev",
     "option": {
       "dialect": "mysql",
       "define": {
