@@ -3,7 +3,8 @@
 // list page
 exports.list = function(req, res) {
     models.Exchange.findAll()
-        .done(function(result) {
+        .done(function (result) {
+            debugger;
             res.render('admin/pages/productList', {
                 title: 'Product List',
                 Exchanges: result

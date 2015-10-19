@@ -5,6 +5,7 @@ var upload = multer({ dest: 'uploads/' })
 var Sequelize = require('sequelize');
 var http = require('http');
 var path = require('path');
+var models = require("./app/models");
 
 app = express();
 app.use(express.static(path.join(__dirname, '')));//设置网站根目录
@@ -14,25 +15,27 @@ app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.locals.moment = require('moment')
+
 require('./config/routes')(app)
 
 //http.createServer(app).listen(app.get('port'), function () {
 //    console.log('XYZ web server listening on port ' + app.get('port'));
 //});
 
-var models = require("./app/models");
+
 models.sequelize.sync().then(function () {
     var server = app.listen(app.get('port'), function () {
-        console.log('Express server listening on port ' + server.address().port);
+        console.log('XYZ server listening on port ' + server.address().port);
     });
 });
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+//app.use(function (req, res, next) {
+//    var err = new Error('Not Found');
+//    err.status = 404;
+//    next(err);
+//});
 
 module.exports = app;
 
@@ -43,7 +46,7 @@ module.exports = app;
 //mysqladmin -u root password "newpass"
 //net start mysql
 //mysql -u root -p
-//CREATE DATABASE IF NOT EXISTS yourdbname DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+//CREATE DATABASE IF NOT EXISTS dbxyz_dev DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 //http://linmomo02.iteye.com/blog/1496736
 
 //首页路由
@@ -82,8 +85,7 @@ app.post('/projects', upload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file 
     // req.body will hold the text fields, if there were any 
     var filePath = req.file.path;
-
-    res.send(req.file);
+    res.send(filePath);
 
 });
 

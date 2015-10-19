@@ -10,8 +10,15 @@ block content
           tr
             th.no-sorting
               input.cbr(type="checkbox")
-            th 名称
-            th 详情
+            th 宝贝名称
+            th 交易条件
+            th 分类
+            th 成色
+            th 周期
+            th 期待
+            th 手机号
+            th 联系人
+            th 交易地点
             th 创建时间
             th.no-sorting
          tbody
@@ -21,8 +28,15 @@ block content
              td
                input.cbr(type="checkbox")
              td #{item.title}
+             td #{item.claim}
              td #{item.classification}
-             td #{item.createdAt}
+             td #{item.degree}
+             td #{item.cycle}
+             td #{item.expect}
+             td #{item.phoneNumber}
+             td #{item.contact}
+             td #{item.loco}
+             td #{moment(item.createdAt).format('YYYY/MM/DD')}
              td
                a(href="#").btn.btn-info.btn-sm.btn-icon.icon-left 详情
                a(href="#").btn.btn-secondary.btn-sm.btn-icon.icon-left 编辑

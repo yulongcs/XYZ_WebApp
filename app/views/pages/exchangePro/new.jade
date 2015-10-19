@@ -7,7 +7,7 @@ block content
         #advancedDropzone.advanced-area 上传图
     .clearfix.margin-b
     form(action="/exchange", methpd="post", enctype="multipart/form-data")
-      input#hdUploadFiles(type="hidden", name="exchange[_files]")
+      input#hdUploadFiles(type="hidden", name="file[files]")
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
         .cell
@@ -20,8 +20,18 @@ block content
          label.control-label(for="selClassification") 分类：
          .cell
            select#selClassification.form-control(name="exchange[classification]")
-             option 数据
-             option 电子产品
+             option 居家生活
+             option 家用电器
+             option wifi设备
+             option 摄影器材
+             option 服装鞋包
+             option 美妆护肤
+             option 孕婴儿童
+             option 宠物当家
+             option 书籍文体
+             option 交通工具
+             option 卡券票务
+             option 其他
        .form-item
          label.control-label(for="selDegree") 成色：
          .cell
@@ -35,15 +45,19 @@ block content
          .cell
            select#selCycle.form-control(name="exchange[cycle]")
              option 一个月
-             option 2周
-             option 5天
+             option 一周
+             option 一天
        .form-item
          label.control-label(for="selExpect") 期待：
          .cell
            select#selExpect.form-control(name="exchange[expect]")
-             option 一个月
-             option 2周
-             option 5天
+             option 文学
+             option 科幻
+             option 教材
+             option 诗歌
+             option 散文
+             option 小说
+             option 其他
        .form-item
          label.control-label(for="inputPhoneNumber") 手机号：
          .cell
@@ -85,11 +99,15 @@ block content
                 uploadprogress: function(file, progress, bytesSent) {
 
                 },
-                success: function(file, data) {
-                    var jsonFilesArr = $hdUploadFiles.val() == "" ? new Array():JSON.parse($hdUploadFiles.val());
-                    jsonFilesArr.push(data);
-                    $advancedDropzone.parent().before('<img alt="user-image" src="/' + data.path + '">');
-                    $hdUploadFiles.val(JSON.stringify(jsonFilesArr));
+                success: function(file, tempURL) {
+                    //- var jsonFilesArr = $hdUploadFiles.val() == "" ? new Array():JSON.parse($hdUploadFiles.val());
+                    //- jsonFilesArr.push(tempURL);
+                    //- $advancedDropzone.parent().before('<img alt="user-image" src="/' + tempURL + '">');
+                    //- $hdUploadFiles.val(JSON.stringify(jsonFilesArr));
+                    var filesArr = $hdUploadFiles.val() == "" ? new Array():$hdUploadFiles.val().split(";");
+                    filesArr.push(tempURL);
+                    $advancedDropzone.parent().before('<img alt="user-image" src="/' + tempURL + '">');
+                    $hdUploadFiles.val(filesArr.join(";"));
                 },
                 error: function(file, msg) {
                    jQuery('#modal-1').modal('show', {backdrop: 'fade'});
