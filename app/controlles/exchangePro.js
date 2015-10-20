@@ -17,14 +17,14 @@ exports.new = function(req, res) {
 exports.saveUploadImg = function (req, res, next) {
     var fileArr = JSON.parse(req.body.file.files);
     var newFileArr = new Array();
-
     async.forEachOf(fileArr, function(file, key, callback) {
-        var oldFilePath = file.path;
-        file.destination = 'app/uploads/'
+        var oldFilePath = path.join(__dirname, "../../", file.path);
+        file.destination = '/app/uploads/'
         file.filename = file.filename + '.' + file.mimetype.split('/')[1];
         file.path = file.destination + file.filename;
+        var newFile = path.join(__dirname, "../../", file.path);
         try {
-            fs.createReadStream(oldFilePath).pipe(fs.createWriteStream(file.path)); //copy
+            fs.createReadStream(oldFilePath).pipe(fs.createWriteStream(newFile)); //copy
             fs.unlinkSync(oldFilePath); //delete
             newFileArr.push(file);
         } catch (e) {
@@ -33,7 +33,7 @@ exports.saveUploadImg = function (req, res, next) {
     }, function(err) {
         if (err) console.error(err.message);
     });
-
+    debugger;
     req.body.fileImgs = newFileArr;
     next();
 
@@ -74,13 +74,13 @@ exports.save = function (req, res) {
         // chain all your queries here. make sure you return them.
         return models.Exchange.create(exchangeData, { transaction: t }).
             then(function (exchange) {
-               
-                //fileData.ExchangeId = exchange.dataValues.id;
-                debugger;
-                return models.File.create(fileData, { transaction: t });
+                fileData.forEach(function(item){
+                    item.ExchangeId = exchange.dataValues.id;
+                })
+                return models.File.bulkCreate(fileData, { transaction: t });
             });
     }).then(function (result) {
-        debugger;
+       
         // Transaction has been committed
         // result is whatever the result of the promise chain returned to the transaction callback
     }).catch(function (err) {
@@ -88,6 +88,7 @@ exports.save = function (req, res) {
         // Transaction has been rolled back
         // err is whatever rejected the promise chain returned to the transaction callback
     });
+    res.redirect('/admin/product');
 }
 
 

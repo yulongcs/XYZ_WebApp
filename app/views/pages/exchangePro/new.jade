@@ -103,7 +103,7 @@ block content
                 success: function(file, tempFile) {
                      var jsonFilesArr = $hdUploadFiles.val() === "" ? new Array():JSON.parse($hdUploadFiles.val());
                      jsonFilesArr.push(tempFile);
-                     $advancedDropzone.parent().before('<img alt="user-image" src="/' + tempFile.path + '">');
+                     $advancedDropzone.parent().before('<img alt="user-image" src="' +tempFile.path + '">');
                      $hdUploadFiles.val(JSON.stringify(jsonFilesArr));
                      //- var jsonStr = JSON.stringify(jsonFilesArr)
                      //- $hdUploadFiles.val(jsonStr);

@@ -1,7 +1,7 @@
 ﻿var express = require('express');
 var bodyParser = require('body-parser')
 var multer = require('multer');
-var upload = multer({ dest: 'uploads/' })
+var upload = multer({ dest: '.tempUploads/' })
 var Sequelize = require('sequelize');
 var http = require('http');
 var path = require('path');
@@ -84,8 +84,15 @@ module.exports = app;
 app.post('/projects', upload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file 
     // req.body will hold the text fields, if there were any 
-    var filePath = req.file.path;
+    req.file.destination = "/" + req.file.destination
+    req.file.path = "\\" + req.file.path
+
     res.send(req.file);
+
+});
+
+app.post('/AAA', upload.single('file'), function (req, res, next) {
+    res.redirect('http://google.com');
 
 });
 

@@ -20,6 +20,7 @@ block content
             th 联系人
             th 交易地点
             th 创建时间
+            th 上传图片
             th.no-sorting
          tbody
          - var products = ["a", "b", "c", "d", "e", "f", "g", "a", "b", "c", "d", "e", "f", "g","a", "b", "c", "d", "e", "f", "g"]
@@ -37,6 +38,9 @@ block content
              td #{item.contact}
              td #{item.loco}
              td #{moment(item.createdAt).format('YYYY/MM/DD')}
+             td 
+               each files in item.Files
+                 <img alt="user-image" src="#{files.path}">
              td
                a(href="#").btn.btn-info.btn-sm.btn-icon.icon-left 详情
                a(href="#").btn.btn-secondary.btn-sm.btn-icon.icon-left 编辑
@@ -66,6 +70,11 @@ block content
       h3.panel-title 上传图片
     .panel-body
       form#fmUpload.dropzone(action="/projects", methpd="post", enctype="multipart/form-data")
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 图标列表
+    .panel-body
+    
 
   script(type="text/javascript").
     jQuery(document).ready(function($) {
