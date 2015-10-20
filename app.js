@@ -85,7 +85,7 @@ app.post('/projects', upload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file 
     // req.body will hold the text fields, if there were any 
     var filePath = req.file.path;
-    res.send(filePath);
+    res.send(req.file);
 
 });
 

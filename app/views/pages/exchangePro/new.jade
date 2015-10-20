@@ -93,21 +93,24 @@ block content
                 paramName: "file", // defalut:"file", The name that will be used to transfer the file
                 maxFilesize: 10, // MB
                 url: '/projects',
+                acceptedFiles: 'image/*',
                 addedfile: function(file) {
 
                 },
                 uploadprogress: function(file, progress, bytesSent) {
 
                 },
-                success: function(file, tempURL) {
-                    //- var jsonFilesArr = $hdUploadFiles.val() == "" ? new Array():JSON.parse($hdUploadFiles.val());
-                    //- jsonFilesArr.push(tempURL);
+                success: function(file, tempFile) {
+                     var jsonFilesArr = $hdUploadFiles.val() === "" ? new Array():JSON.parse($hdUploadFiles.val());
+                     jsonFilesArr.push(tempFile);
+                     $advancedDropzone.parent().before('<img alt="user-image" src="/' + tempFile.path + '">');
+                     $hdUploadFiles.val(JSON.stringify(jsonFilesArr));
+                     //- var jsonStr = JSON.stringify(jsonFilesArr)
+                     //- $hdUploadFiles.val(jsonStr);
+                    //- var filesArr = $hdUploadFiles.val() == "" ? new Array():$hdUploadFiles.val().split(";");
+                    //- filesArr.push(tempURL);
                     //- $advancedDropzone.parent().before('<img alt="user-image" src="/' + tempURL + '">');
-                    //- $hdUploadFiles.val(JSON.stringify(jsonFilesArr));
-                    var filesArr = $hdUploadFiles.val() == "" ? new Array():$hdUploadFiles.val().split(";");
-                    filesArr.push(tempURL);
-                    $advancedDropzone.parent().before('<img alt="user-image" src="/' + tempURL + '">');
-                    $hdUploadFiles.val(filesArr.join(";"));
+                    //- $hdUploadFiles.val(filesArr.join(";"));
                 },
                 error: function(file, msg) {
                    jQuery('#modal-1').modal('show', {backdrop: 'fade'});

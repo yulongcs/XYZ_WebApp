@@ -1,4 +1,7 @@
-﻿var fs = require("fs");
+﻿var path = require('path');
+var async = require('async');
+
+var fs = require("fs");
 var models = require('../models');
 var Sequelize = require("sequelize");
 var env = process.env.NODE_ENV || "development";
@@ -12,41 +15,55 @@ exports.new = function(req, res) {
 }
 
 exports.saveUploadImg = function (req, res, next) {
+    var fileArr = JSON.parse(req.body.file.files);
+    var newFileArr = new Array();
 
-    var fileArr = req.body.file.files.split(';');
-    debugger;
-    if (fileArr) {
-        fileArr.forEach(function (filePath) {
-            debugger;
-            fs.lstatSync(filePath, function (err, data) {
-                debugger;
-            });
-        });
-    }
-    else { }
-    //if (originalFilename) {
-    //    fs.readFile(filePath, function (err, data) {
-    //        var timestamp = Date.now()
-    //        var type = posterData.type.split('/')[1]
-    //        var poster = timestamp + '.' + type
-    //        var newPath = path.join(__dirname, '../../', '/public/upload/' + poster)
+    async.forEachOf(fileArr, function(file, key, callback) {
+        var oldFilePath = file.path;
+        file.destination = 'app/uploads/'
+        file.filename = file.filename + '.' + file.mimetype.split('/')[1];
+        file.path = file.destination + file.filename;
+        try {
+            fs.createReadStream(oldFilePath).pipe(fs.createWriteStream(file.path)); //copy
+            fs.unlinkSync(oldFilePath); //delete
+            newFileArr.push(file);
+        } catch (e) {
+            return callback(e);
+        }
+    }, function(err) {
+        if (err) console.error(err.message);
+    });
 
-    //        fs.writeFile(newPath, data, function (err) {
-    //            req.poster = poster
-    //            next()
-    //        })
-    //    })
-    //}
-    //else {
-    //    next()
-    //}
+    req.body.fileImgs = newFileArr;
+    next();
+
+    //fileArr.forEach(function(file) {
+    //    fs.readFile(file.path, function(err, data) {
+    //        var oldFilePath = file.path;
+    //        file.destination = 'app/uploads/'
+    //        file.filename = file.filename + '.' + file.mimetype.split('/')[1];
+    //        file.path = file.destination + file.filename;
+    //        //fs.writeFile(newPath, data, function (err) {
+    //        //    if (err) {
+    //        //        debugger;
+    //        //    }
+    //        //    newfileArr.push(file);
+    //        //});
+    //        fs.createReadStream(oldFilePath).pipe(fs.createWriteStream(file.path)); //copy
+    //        fs.unlinkSync(oldFilePath); //delete
+    //        newFileArr.push(file);
+    //        debugger;
+    //    });
+    //})
+    //debugger;
+    //req.body.fileImgs = newFileArr;
+    //next();
 }
 
 exports.save = function (req, res) {
     var exchangeData = req.body.exchange;
     var fileData = req.body.fileImgs;
-    debugger;
-    //models.Exchange.build(data).save()
+    //models.File.create(fileData[0])
     //    .done(function (result) {
     //        var dataValue = result.dataValues;
     //        debugger;
@@ -56,10 +73,12 @@ exports.save = function (req, res) {
     models.sequelize.transaction(function (t) {
         // chain all your queries here. make sure you return them.
         return models.Exchange.create(exchangeData, { transaction: t }).
-        then(function (exchange) {
-            fileData.ExchangeId = exchange.dataValues.id;
-            return models.Exchange.create(fileData, { transaction: t });
-        });
+            then(function (exchange) {
+               
+                //fileData.ExchangeId = exchange.dataValues.id;
+                debugger;
+                return models.File.create(fileData, { transaction: t });
+            });
     }).then(function (result) {
         debugger;
         // Transaction has been committed
