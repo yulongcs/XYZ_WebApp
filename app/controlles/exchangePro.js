@@ -8,7 +8,7 @@ var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + '/../../config/config.json')[env];
 var sequelize = new Sequelize(config.database, config.username, config.password, config);
 
-exports.new = function(req, res) {
+exports.new = function (req, res) {
     res.render('pages/exchangePro/new', {
         title: '交换'
     })
@@ -16,25 +16,35 @@ exports.new = function(req, res) {
 
 exports.saveUploadImg = function (req, res, next) {
     var fileArr = JSON.parse(req.body.file.files);
-    var newFileArr = new Array();
-    async.forEachOf(fileArr, function(file, key, callback) {
-        var oldFilePath = path.join(__dirname, "../../", file.path);
-        file.destination = '/app/uploads/'
-        file.filename = file.filename + '.' + file.mimetype.split('/')[1];
-        file.path = file.destination + file.filename;
-        var newFile = path.join(__dirname, "../../", file.path);
-        try {
-            fs.createReadStream(oldFilePath).pipe(fs.createWriteStream(newFile)); //copy
-            fs.unlinkSync(oldFilePath); //delete
-            newFileArr.push(file);
-        } catch (e) {
-            return callback(e);
-        }
+
+    var rootdirectory = path.join(__dirname, "../../");
+    var absoluteDestination = "/app/uploads/";
+    var newFilePath = rootdirectory + absoluteDestination;
+    
+    async.forEachOf(fileArr, function (file, key, callback) {
+        fs.exists(newFilePath, function (exists) {
+            if (!exists) {
+                fs.mkdir(newFilePath, function(exists) {
+                    
+                });
+            }
+            var oldFilePath = rootdirectory + file.path;
+            file.destination = absoluteDestination
+            file.filename = file.filename + '.' + file.mimetype.split('/')[1];
+            file.path = absoluteDestination + file.filename;
+            var newFile = rootdirectory + file.path
+            try {
+                fs.createReadStream(oldFilePath).pipe(fs.createWriteStream(newFile)); //copy
+                fs.unlinkSync(oldFilePath); //delete
+            } catch (e) {
+                return callback(e);
+            }
+        });      
     }, function(err) {
         if (err) console.error(err.message);
     });
-    debugger;
-    req.body.fileImgs = newFileArr;
+    
+    req.body.fileImgs = fileArr;
     next();
 
     //fileArr.forEach(function(file) {
