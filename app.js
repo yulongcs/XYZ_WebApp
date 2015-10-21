@@ -91,8 +91,9 @@ app.post('/projects', upload.single('file'), function (req, res, next) {
 
 });
 
-app.post('/AAA', upload.single('file'), function (req, res, next) {
-    res.redirect('http://google.com');
+app.get('/AAA', upload.single('file'), function (req, res) {
+    debugger;
+    res.redirect('/exchange/new');
 
 });
 
