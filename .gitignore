@@ -1,4 +1,5 @@
 node_modules
 dist
 .tmp
+.tempUploads
 bower_components

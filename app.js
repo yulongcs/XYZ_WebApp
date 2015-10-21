@@ -91,7 +91,7 @@ app.post('/projects', upload.single('file'), function (req, res, next) {
 
 });
 
-app.get('/AAA', upload.single('file'), function (req, res) {
+app.post('/AAA',  function (req, res) {
     debugger;
     res.redirect('/exchange/new');
 

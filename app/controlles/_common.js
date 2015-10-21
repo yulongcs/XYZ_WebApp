@@ -1,0 +1,37 @@
+﻿var path = require('path');
+var async = require('async');
+var fs = require("fs");
+var rootPath = path.join(__dirname, "../../");
+var env = process.env.NODE_ENV || "development";
+var config = require(rootPath + 'config/config.json')[env];
+
+exports.saveUploadFiles = function (req, res, next) {
+    debugger;
+    var fileArr = JSON.parse(req.body.file.files);
+
+    var newFileFolderPath = rootPath + config.uploadImageFolderPath;
+    debugger;
+    fs.exists(newFileFolderPath, function (exists) {
+        if (!exists) {
+            fs.mkdir(newFileFolderPath, function (exists) { });
+        }
+    });
+
+    async.forEachOf(fileArr, function (file, key, callback) {
+        var oldFilePath = rootPath + file.path;
+        file.destination = config.uploadImageFolderPath
+        file.filename = file.filename + '.' + file.mimetype.split('/')[1];
+        file.path = file.destination + file.filename;
+        var newFile = rootPath + file.path
+        try {
+            fs.createReadStream(oldFilePath).pipe(fs.createWriteStream(newFile)); //copy
+            fs.unlinkSync(oldFilePath); //delete
+        } catch (e) {
+            return callback(e);
+        }
+    }, function (err) {
+        if (err) console.error(err.message);
+    });
+    req.body.files = fileArr;
+    next();
+}
