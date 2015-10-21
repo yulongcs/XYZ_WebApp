@@ -15,9 +15,9 @@ exports.new = function (req, res) {
 }
 
 exports.save = function (req, res) {
-    debugger;
     var exchangeData = req.body.exchange;
     var fileData = req.body.files;
+    debugger;
     //models.File.create(fileData[0])
     //    .done(function (result) {
     //        var dataValue = result.dataValues;
@@ -35,7 +35,7 @@ exports.save = function (req, res) {
                 return models.File.bulkCreate(fileData, { transaction: t });
             });
     }).then(function (result) {
-       
+        res.redirect('/admin/product');
         // Transaction has been committed
         // result is whatever the result of the promise chain returned to the transaction callback
     }).catch(function (err) {
@@ -43,5 +43,5 @@ exports.save = function (req, res) {
         // Transaction has been rolled back
         // err is whatever rejected the promise chain returned to the transaction callback
     });
-    res.redirect('/admin/product');
+   
 }

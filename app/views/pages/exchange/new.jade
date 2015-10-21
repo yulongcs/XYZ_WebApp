@@ -6,7 +6,7 @@ block content
       .item
         #advancedDropzone.advanced-area 上传图
     .clearfix.margin-b
-    form(action="/exchange", methpd="post", enctype="multipart/form-data")
+    form(method="post", action="/exchange", enctype="multipart/form-data")
       input#hdUploadFiles(type="hidden", name="file[files]")
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
@@ -32,7 +32,7 @@ block content
              option 交通工具
              option 卡券票务
              option 其他
-       .form-item
+      .form-item
          label.control-label(for="selDegree") 成色：
          .cell
            select#selDegree.form-control(name="exchange[degree]")
@@ -70,11 +70,11 @@ block content
          label.control-label(for="inputLoco ") 交换地点：
          .cell
            input#inputLoco.form-control(type="text", name="exchange[loco]", placeholder="填写你希望的交易地点")
-        .form-item.row
-           .col-xs-6.align-c
-             button.btn.btn-green.brs5 重&nbsp;&nbsp;&nbsp;&nbsp;填
-           .col-xs-6.align-c
-             button.btn.btn-green.brs5 发&nbsp;&nbsp;&nbsp;&nbsp;布
+      .form-item.row
+        .col-xs-6.align-c
+          button.btn.btn-green.brs5 重&nbsp;&nbsp;&nbsp;&nbsp;填
+        .col-xs-6.align-c
+          button.btn.btn-green.brs5(type="submit") 发&nbsp;&nbsp;&nbsp;&nbsp;布
   #modal-1.modal.fade
       .modal-dialog
         .modal-content
