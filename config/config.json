@@ -1,16 +1,4 @@
 ﻿{
-  "localhost": {
-    "username": "root",
-    "password": "sa@123456",
-    "database": "dbxyz_local",
-    "option": {
-      "dialect": "mysql",
-      "define": {
-        "timestamps": true, 
-        "freezeTableName": true
-      }
-    }
-  },
   "development": {
     "username": "root",
     "password": "sa@123456",
@@ -21,7 +9,10 @@
         "timestamps": true,
         "freezeTableName": true
       }
-    }
+    },
+    "uploadImageFolderPath": "/app/uploads/image/",
+    "uploadFileFolderPath": "/app/uploads/file",
+    "TempUploadFolderPath": ".tempUploads/"
   },
   "test": {
     "username": "root",
