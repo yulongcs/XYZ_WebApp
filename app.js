@@ -49,7 +49,7 @@ module.exports = app;
 //CREATE DATABASE IF NOT EXISTS dbxyz_dev DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 //http://linmomo02.iteye.com/blog/1496736
 //data = $(form).serialize();     //序列化表单数据
-
+//http://www.jb51.net/article/44122.htm  验证表单
 
 //首页路由
 
