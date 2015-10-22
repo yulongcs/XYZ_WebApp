@@ -6,12 +6,12 @@ block content
       .item
         #advancedDropzone.advanced-area 上传图
     .clearfix.margin-b
-    form(method="post", action="/exchange", enctype="multipart/form-data")
+    form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
       input#hdUploadFiles(type="hidden", name="file[files]")
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
         .cell
-          input#inputTitle.form-control(type="text", name="exchange[title]", placeholder="闲余的名称和类型（6-20字）")
+          input#inputTitle.form-control(type="text", name="exchange[title]", data-validate="required" data-message-required="This is custom message for required field.", placeholder="闲余的名称和类型（6-20字）")
       .form-item
         label.control-label(for="inputClaim") 条件：
         .cell

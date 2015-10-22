@@ -6,6 +6,8 @@ var env = process.env.NODE_ENV || "development";
 var config = require(rootPath + '/config/config.json')[env];
 
 exports.saveUploadFiles = function (req, res, next) {
+    req.fresh("error", "AAAAAAAAA");
+    res.redirect('/exchange/new');
     var fileArr = JSON.parse(req.body.file.files);
     var newFileFolderPath = (rootPath + config.uploadImageFolderPath).replace(/\//g, '\\');
     async.series({
@@ -20,7 +22,6 @@ exports.saveUploadFiles = function (req, res, next) {
                         pathtmp = dirname;
                     }
                     if (!fs.existsSync(pathtmp)) {
-                        debugger;
                         if (!fs.mkdirSync(pathtmp, 0777)) {//0777   目录权限（读写权限），默认0777
                             return false;
                         }
@@ -34,10 +35,9 @@ exports.saveUploadFiles = function (req, res, next) {
                 var oldFilePath = rootPath + file.path;
                 file.destination = config.uploadImageFolderPath
                 file.filename = file.filename + '.' + file.mimetype.split('/')[1];
-                file.path = (file.destination + file.filename).replace('//', '\\').replace('/', '\\');
+                file.path = (file.destination + file.filename).replace(/\//g, '\\');
                 var newFile = rootPath + file.path
                 try {
-                    debugger;
                     fs.createReadStream(oldFilePath).pipe(fs.createWriteStream(newFile)); //copy
                     fs.unlinkSync(oldFilePath); //delete
                 } catch (e) {
@@ -51,23 +51,4 @@ exports.saveUploadFiles = function (req, res, next) {
         req.body.files = fileArr;
         next();
     });
-
-    
-    //async.forEachOf(fileArr, function (file, key, callback) {
-    //    var oldFilePath = rootPath + file.path;
-    //    file.destination = config.uploadImageFolderPath
-    //    file.filename = file.filename + '.' + file.mimetype.split('/')[1];
-    //    file.path = file.destination + file.filename;
-    //    var newFile = rootPath + file.path
-    //    try {
-    //        fs.createReadStream(oldFilePath).pipe(fs.createWriteStream(newFile)); //copy
-    //        fs.unlinkSync(oldFilePath); //delete
-    //    } catch (e) {
-    //        return callback(e);
-    //    }
-    //}, function (err) {
-    //    if (err) console.error(err.message);
-    //});
-    //req.body.files = fileArr;
-    //next();
 }
