@@ -50,6 +50,7 @@ module.exports = app;
 //http://linmomo02.iteye.com/blog/1496736
 //data = $(form).serialize();     //序列化表单数据
 //http://www.jb51.net/article/44122.htm  验证表单
+//https://cnodejs.org/topic/52090bc944e76d216af25f6f
 
 //首页路由
 
