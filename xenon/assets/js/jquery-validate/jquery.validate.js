@@ -165,7 +165,8 @@ $.extend($.fn, {
 		data = $.validator.normalizeRules(
 		$.extend(
 			{},
-			$.validator.classRules( element ),
+			$.validator.classRules(element),
+            $.validator.metadataRules(element),
 			$.validator.attributeRules( element ),
 			$.validator.dataRules( element ),
 			$.validator.staticRules( element )
@@ -1013,6 +1014,15 @@ $.extend( $.validator, {
 		}
 		return rules;
 	},
+
+	metadataRules: function(element) {
+	    if (!$.metadata) return {};
+	    var meta = $.data(element.form, "validator").settings.meta;
+	    return meta ?
+        $(element).metadata()[meta] :
+        $(element).metadata();
+	},
+
 
 	normalizeRules: function( rules, element ) {
 		// handle dependency check
