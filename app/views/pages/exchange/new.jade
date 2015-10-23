@@ -11,7 +11,7 @@ block content
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
         .cell
-          input#inputTitle.form-control(type="text", name="exchange[title]", data-validate="required" data-message-required="This is custom message for required field.", placeholder="闲余的名称和类型（6-20字）")
+          input#inputTitle.form-control(type="text", name="exchange[title]", validate=" {required: true, rangelength: [5,10]} ", placeholder="闲余的名称和类型（6-20字）")
       .form-item
         label.control-label(for="inputClaim") 条件：
         .cell
@@ -72,7 +72,7 @@ block content
            input#inputLoco.form-control(type="text", name="exchange[loco]", placeholder="填写你希望的交易地点")
       .form-item.row
         .col-xs-6.align-c
-          button.btn.btn-green.brs5 重&nbsp;&nbsp;&nbsp;&nbsp;填
+          button.btn.btn-green.brs5(type="reset") 重&nbsp;&nbsp;&nbsp;&nbsp;填
         .col-xs-6.align-c
           button.btn.btn-green.brs5(type="submit") 发&nbsp;&nbsp;&nbsp;&nbsp;布
   #modal-1.modal.fade
