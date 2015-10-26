@@ -173,7 +173,10 @@ html > body .clearfix {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  /*& > .cell > input, > .cell > textarea,> .cell > select{ 
+        width:100%; border:none; font-size: 14px; padding:5px 0
+    }*/ }
   .form-item > label {
     font-size: 16px;
     color: #0c0c0c;
@@ -181,11 +184,19 @@ html > body .clearfix {
     line-height: 28px; }
   .form-item > .cell {
     padding-left: 80px; }
-  .form-item > .cell > input, .form-item > .cell > textarea, .form-item > .cell > select {
-    width: 100%;
-    border: none;
-    font-size: 14px;
-    padding: 5px 0; }
+    .form-item > .cell > input, .form-item > .cell textarea, .form-item > .cell select {
+      width: 100%;
+      border: none;
+      font-size: 14px;
+      padding: 5px 0; }
+  .form-item > .appoint {
+    position: absolute;
+    background-color: #048c51;
+    margin-top: -26px;
+    padding: 0 5px;
+    border-radius: 3px;
+    color: #FFF;
+    right: 18px; }
   .form-item .validate-has-error {
     display: block;
     font-size: 12px;

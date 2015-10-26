@@ -127,11 +127,24 @@ background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAA/CAY
         font-size:16px; color:#0c0c0c; float:left;line-height: 28px;
     }
     & > .cell { 
-        padding-left: 80px; 
+        padding-left: 80px;
+        
+        & > input,textarea,select{
+            width:100%; border:none; font-size: 14px; padding:5px 0
+        } 
     }
-    & > .cell > input, > .cell > textarea,> .cell > select{ 
+    & > .appoint{
+        position:absolute;
+        background-color:#048c51;
+        margin-top:-26px;
+        padding:0 5px;
+        border-radius:3px;
+        color:#FFF;
+        right:18px;
+    }
+    /*& > .cell > input, > .cell > textarea,> .cell > select{ 
         width:100%; border:none; font-size: 14px; padding:5px 0
-    }
+    }*/
      .validate-has-error{
          display:block;
          font-size: 12px;
