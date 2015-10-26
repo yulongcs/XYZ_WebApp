@@ -6,7 +6,6 @@ var env = process.env.NODE_ENV || "development";
 var config = require(rootPath + '/config/config.json')[env];
 
 exports.saveUploadFiles = function (req, res, next) {
-    return res.status(500).send({ msg: 'AAAAAAAAAAAAA' });
     var fileArr = JSON.parse(req.body.file.files);
     var newFileFolderPath = (rootPath + config.uploadImageFolderPath).replace(/\//g, '\\');
     async.series({

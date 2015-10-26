@@ -129,7 +129,7 @@ background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAA/CAY
     & > .cell { 
         padding-left: 80px;
         
-        & > input,textarea,select{
+        & > input, & >textarea, & >select{
             width:100%; border:none; font-size: 14px; padding:5px 0
         } 
     }

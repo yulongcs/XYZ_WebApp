@@ -15,13 +15,19 @@ $(function () {
                 url: form.attr('action'),
                 type: 'POST',
                 data: form.serialize(),
-                success: function(obj) {
-                    debugger;
+                success: function (result) {
+                    if (result === "OK") {
+                        window.location.href = "/admin/product";
+                    }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function(jqXhr, textStatus, errorThrown) {
                     //textStatus :"timeout", "error", "notmodified" 和 "parsererror"。
-                    var errorMsg = jqXHR.responseJSON.msg;
-                    alert(errorMsg)
+                    if (jqXhr.responseJSON) {
+                        var errorMsg = jqXhr.responseJSON.msg;
+                        alert(errorMsg)
+                    } else {
+                        alert("unknow error")
+                    }
                 }
             });
         }

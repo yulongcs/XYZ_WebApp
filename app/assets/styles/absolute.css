@@ -184,7 +184,7 @@ html > body .clearfix {
     line-height: 28px; }
   .form-item > .cell {
     padding-left: 80px; }
-    .form-item > .cell > input, .form-item > .cell textarea, .form-item > .cell select {
+    .form-item > .cell > input, .form-item > .cell > textarea, .form-item > .cell > select {
       width: 100%;
       border: none;
       font-size: 14px;
