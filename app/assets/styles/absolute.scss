@@ -122,7 +122,7 @@ background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAA/CAY
     & > .cell { 
         padding-left: 80px; 
     }
-    & > .cell > input{ 
+    & > .cell > input, > .cell > textarea,> .cell > select{ 
         width:100%; border:none; font-size: 14px; padding:5px 0
     }
      .validate-has-error{

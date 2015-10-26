@@ -11,11 +11,11 @@ block content
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
         .cell
-          input#inputTitle.form-control(type="text", name="exchange[title]", validate=" {required: true, rangelength: [5,10]} ", placeholder="闲余的名称和类型（6-20字）")
+          input#inputTitle.form-control(type="text", name="exchange[title]", validate="{required: true, rangelength: [6,20]}", placeholder="闲余的名称和类型（6-20字）")
       .form-item
         label.control-label(for="inputClaim") 条件：
         .cell
-          textarea#inputClaim.form-control(type="text", rows="3", name="exchange[claim]", placeholder="为你出售的宝贝吆喝几句（20字以内）")
+          textarea#inputClaim.form-control(type="text", rows="3", name="exchange[claim]", validate="{required: true, rangelength: [5,50]}", placeholder="为你出售的宝贝吆喝几句（50字以内）")
       .form-item
          label.control-label(for="selClassification") 分类：
          .cell
@@ -61,15 +61,15 @@ block content
        .form-item
          label.control-label(for="inputPhoneNumber") 手机号：
          .cell
-           input#inputPhoneNumber.form-control(type="text", name="exchange[phoneNumber]", placeholder="手机号")
+           input#inputPhoneNumber.form-control(type="text", name="exchange[phoneNumber]", validate="{required: true, mobile: true}", placeholder="手机号")
        .form-item
          label.control-label(for="inputContact") 联系人：
          .cell
-           input#inputContact.form-control(type="text", name="exchange[contact]", placeholder="联系人")
+           input#inputContact.form-control(type="text", name="exchange[contact]", validate="{required: true, rangelength: [1,10]}", placeholder="联系人")
        .form-item
          label.control-label(for="inputLoco ") 交换地点：
          .cell
-           input#inputLoco.form-control(type="text", name="exchange[loco]", placeholder="填写你希望的交易地点")
+           input#inputLoco.form-control(type="text", name="exchange[loco]", validate="{required: true, rangelength: [1,50]}" placeholder="填写你希望的交易地点")
       .form-item.row
         .col-xs-6.align-c
           button.btn.btn-green.brs5(type="reset") 重&nbsp;&nbsp;&nbsp;&nbsp;填
