@@ -49,7 +49,7 @@ html > body .clearfix {
   display: none; }
 
 /* End Clearfix */
-.margin-b {
+.margin-b10 {
   margin-bottom: 10px; }
 
 .align-c {
@@ -126,6 +126,10 @@ html > body .clearfix {
   bottom: 64px;
   overflow: auto;
   background-color: #fff; }
+  .content .form-item-separator {
+    height: 1px;
+    background: #aae4cb;
+    margin-bottom: 10px; }
 
 .icon-addpic, .uploadimg-list > .item > .advanced-area {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAA/CAYAAABXXxDfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MjYwMUM1QUQ2RTkwMTFFNThGOEVCMjVFRTJGRTg3NTEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MjYwMUM1QUU2RTkwMTFFNThGOEVCMjVFRTJGRTg3NTEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyNjAxQzVBQjZFOTAxMUU1OEY4RUIyNUVFMkZFODc1MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyNjAxQzVBQzZFOTAxMUU1OEY4RUIyNUVFMkZFODc1MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PurcpkAAAAENSURBVHja7NrhDYJADIZhcAHcwBFgAx2BERzBEXQDVnATHMENdAM2wPsIJP7kSNqQu7dJ459G7jkJqVfKcRwLp2hCtivqupCDx4JKJ7zgfchqRe075MVjA7zwgp8j6h8h79aLOhQZB3jw4MGDBw8ePHjw4MGDBw8ePHjw4MHvNpaja52rd4bX0fdXEfXfkB+jtWgecNWn8DEDhVRiGozotm8zgytq3Y088MCDBw8ePPi029vj3OHVGbmfanGX3l4bcDO8mHrpU0T9a/5BrHr77v+PjXUIwjs5PPDAgwcPHjx48ODBgwcPHjx48ODBgwe/N/xgXL8pvI6uYwYj00AhJfyyAc2Kut5rQT8BBgCvmDoFFyTvWQAAAABJRU5ErkJggg==');
@@ -164,11 +168,12 @@ html > body .clearfix {
       user-select: none; }
 
 .form-item {
-  border-top: 1px solid #aae4cb;
-  padding: 10px 17px;
+  /*border-top: 1px solid #aae4cb;*/
+  padding: 0 17px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin-bottom: 10px; }
   .form-item > label {
     font-size: 16px;
     color: #0c0c0c;

@@ -1,76 +1,86 @@
 ﻿extends ../../layout
 
 block content
-  .content
+  .content.row
     .uploadimg-list
       .item
         #advancedDropzone.advanced-area 上传图
-    .clearfix.margin-b
+    .clearfix.margin-b10
+    .form-item-separator
     form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
       input#hdUploadFiles(type="hidden", name="file[files]")
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
         .cell
           input#inputTitle.form-control(type="text", name="exchange[title]", validate="{required: true, rangelength: [6,20]}", placeholder="闲余的名称和类型（6-20字）")
+      .form-item-separator
       .form-item
         label.control-label(for="inputClaim") 条件：
         .cell
           textarea#inputClaim.form-control(type="text", rows="3", name="exchange[claim]", validate="{required: true, rangelength: [5,50]}", placeholder="为你出售的宝贝吆喝几句（50字以内）")
+      .form-item-separator
+      .col-xs-6.form-item
+        label.control-label(for="selClassification") 分类：
+        .cell
+          select#selClassification.form-control(name="exchange[classification]")
+            option 居家生活
+            option 家用电器
+            option wifi设备
+            option 摄影器材
+            option 服装鞋包
+            option 美妆护肤
+            option 孕婴儿童
+            option 宠物当家
+            option 书籍文体
+            option 交通工具
+            option 卡券票务
+            option 其他
+      .col-xs-6.form-item
+        label.control-label(for="selDegree") 成色：
+        .cell
+          select#selDegree.form-control(name="exchange[degree]")
+            option 9成新
+            option 7成新
+            option 4成新
+            option 2成新
+      .clearfix
+      .form-item-separator
+      .form-item.col-xs-6
+        label.control-label(for="selCycle") 周期：
+        .cell
+          select#selCycle.form-control(name="exchange[cycle]")
+            option 一个月
+            option 一周
+            option 一天
+      .form-item.col-xs-6
+        label.control-label(for="selExpect") 期待：
+        .cell
+          select#selExpect.form-control(name="exchange[expect]")
+            option 文学
+            option 科幻
+            option 教材
+            option 诗歌
+            option 散文
+            option 小说
+            option 其他
+      .clearfix
+      .form-item-separator
+      .form-item.col-xs-6
+        label.control-label(for="inputPhoneNumber") 手机号：
+        .cell
+          input#inputPhoneNumber.form-control(type="text", name="exchange[phoneNumber]", validate="{required: true, mobile: true}", placeholder="手机号")
+      .form-item.col-xs-6
+        label.control-label(for="inputContact") 联系人：
+        .cell
+          input#inputContact.form-control(type="text", name="exchange[contact]", validate="{required: true, rangelength: [1,10]}", placeholder="联系人")
+      .clearfix
+      .form-item-separator
       .form-item
-         label.control-label(for="selClassification") 分类：
-         .cell
-           select#selClassification.form-control(name="exchange[classification]")
-             option 居家生活
-             option 家用电器
-             option wifi设备
-             option 摄影器材
-             option 服装鞋包
-             option 美妆护肤
-             option 孕婴儿童
-             option 宠物当家
-             option 书籍文体
-             option 交通工具
-             option 卡券票务
-             option 其他
+        label.control-label(for="inputLoco ") 交换地点：
+        .cell
+          input#inputLoco.form-control(type="text", name="exchange[loco]", validate="{required: true, rangelength: [1,50]}" placeholder="填写你希望的交易地点")
+      .form-item-separator
       .form-item
-         label.control-label(for="selDegree") 成色：
-         .cell
-           select#selDegree.form-control(name="exchange[degree]")
-             option 9成新
-             option 7成新
-             option 4成新
-             option 2成新
-       .form-item
-         label.control-label(for="selCycle") 周期：
-         .cell
-           select#selCycle.form-control(name="exchange[cycle]")
-             option 一个月
-             option 一周
-             option 一天
-       .form-item
-         label.control-label(for="selExpect") 期待：
-         .cell
-           select#selExpect.form-control(name="exchange[expect]")
-             option 文学
-             option 科幻
-             option 教材
-             option 诗歌
-             option 散文
-             option 小说
-             option 其他
-       .form-item
-         label.control-label(for="inputPhoneNumber") 手机号：
-         .cell
-           input#inputPhoneNumber.form-control(type="text", name="exchange[phoneNumber]", validate="{required: true, mobile: true}", placeholder="手机号")
-       .form-item
-         label.control-label(for="inputContact") 联系人：
-         .cell
-           input#inputContact.form-control(type="text", name="exchange[contact]", validate="{required: true, rangelength: [1,10]}", placeholder="联系人")
-       .form-item
-         label.control-label(for="inputLoco ") 交换地点：
-         .cell
-           input#inputLoco.form-control(type="text", name="exchange[loco]", validate="{required: true, rangelength: [1,50]}" placeholder="填写你希望的交易地点")
-      .form-item.row
         .col-xs-6.align-c
           button.btn.btn-green.brs5(type="reset") 重&nbsp;&nbsp;&nbsp;&nbsp;填
         .col-xs-6.align-c
