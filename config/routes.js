@@ -11,8 +11,12 @@ module.exports = function (app) {
     app.get('/', Index.index)
 
     ////Exchange
-    app.get('/exchange/new', Exchange.new)
-    app.post('/exchange', upload.array(), Common.saveUploadFiles, Exchange.save)
+    app.get('/exchange/new', upload.array(), Exchange.new);
+    app.get('/exchange/update:id',upload.array(), Exchange.update);
+    app.get('/exchange/list', upload.array(), Exchange.list);
+    app.get('/exchange/detail/:id', upload.array(), Exchange.detail);
+    app.post('/exchange/save', upload.array(), Common.saveUploadFiles, Exchange.save);
+    app.delete('/exchage/delete', upload.array(), Exchange.delete);
      
 
 
