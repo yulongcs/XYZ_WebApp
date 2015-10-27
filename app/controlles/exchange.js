@@ -5,8 +5,44 @@ var models = require('../models');
 
 exports.new = function (req, res) {
     res.render('pages/exchange/new', {
-        title: '交换'
+        title: '交换',
+        Exchanges: {}
     })
+}
+
+exports.update = function (req, res) {
+    var id = req.params.id;
+    if (id) {
+        models.Exchange.find(Number(id)).then(function (result) {
+            res.render('pages/exchange/new', {
+                title: '交换',
+                Exchanges: result
+            })
+        });       
+    }   
+}
+
+exports.list = function(req, res) {
+    models.Exchange.findAll({
+        include: [models.File]
+    }).then(function (result) {
+        res.render('pages/exchange/list', {
+            title: '交换',
+            Exchanges: result
+        });
+    });
+}
+
+exports.detail = function (req, res) {
+    var id = req.params.id;
+    if (id) {
+        models.Exchange.findById(id, { include: [models.File] }).then(function (result) {
+            res.render('pages/exchange/detail', {
+                title: '交换',
+                Exchanges: result
+            })
+        });
+    }
 }
 
 exports.save = function (req, res) {
@@ -23,8 +59,7 @@ exports.save = function (req, res) {
             });
     }).then(function () {
         return res.send("OK");
-    }).catch(function (err) {
-       
+    }).catch(function (err) {       
         fileData.forEach(function(file) {
             fs.unlinkSync(rootPath + file.path); //delete upload image
         });
@@ -32,4 +67,15 @@ exports.save = function (req, res) {
         // Transaction has been rolled back
         // err is whatever rejected the promise chain returned to the transaction callback
     });
+}
+
+exports.delete = function(req, res) {
+    var id = req.params.id;
+    if (id) {
+        models.Exchange.find(Number(id)).then(function (exchange) {
+            exchange.destroy().then(function() {
+                res.send("OK");
+            });
+        });
+    }
 }
