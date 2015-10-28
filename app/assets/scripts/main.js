@@ -33,4 +33,10 @@ $(function () {
         }
     });
 
+    $(".footer a:not(.active)").hover(function () {
+        $(this).addClass("active");
+    }, function() {
+        $(this).removeClass("active");
+    })
+
 });
