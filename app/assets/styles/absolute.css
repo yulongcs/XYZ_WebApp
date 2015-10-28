@@ -61,6 +61,13 @@ html > body .clearfix {
 .brs5 {
   border-radius: 5px; }
 
+.white-space {
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
 .btn {
   width: 120px;
   font-size: 16px; }
@@ -128,6 +135,10 @@ html > body .clearfix {
   bottom: 64px;
   overflow: auto;
   background-color: #fff; }
+  .content .item-separator {
+    height: 1px;
+    background: #aae4cb;
+    margin-bottom: 10px; }
 
 /*upload image*/
 .icon-addpic, .uploadimg-list > .item > .advanced-area {
@@ -167,25 +178,25 @@ html > body .clearfix {
       user-select: none; }
 
 /*form*/
-form .form-item {
+.form-item {
   padding: 0 17px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin-bottom: 10px; }
-  form .form-item > label {
+  .form-item > label {
     font-size: 16px;
     color: #0c0c0c;
     float: left;
     line-height: 28px; }
-  form .form-item > .cell {
+  .form-item > .cell {
     padding-left: 80px; }
-    form .form-item > .cell > input, form .form-item > .cell > textarea, form .form-item > .cell > select {
+    .form-item > .cell > input, .form-item > .cell > textarea, .form-item > .cell > select {
       width: 100%;
       border: none;
       font-size: 14px;
       padding: 5px 0; }
-  form .form-item > .appoint {
+  .form-item > .appoint {
     position: absolute;
     background-color: #048c51;
     margin-top: -26px;
@@ -193,17 +204,19 @@ form .form-item {
     border-radius: 3px;
     color: #FFF;
     right: 18px; }
-  form .form-item .validate-has-error {
+  .form-item img.usercard {
+    width: 50px; }
+  .form-item span, .form-item a {
+    line-height: 32px;
+    vertical-align: bottom; }
+  .form-item .validate-has-error {
     display: block;
     font-size: 12px;
     color: #cc3f44;
     position: absolute;
     margin: -8px 20px; }
-form .form-item-separator {
-  height: 1px;
-  background: #aae4cb;
-  margin-bottom: 10px; }
 
+/*********************List****************************/
 /*waterfull*/
 .waterfull {
   padding: 5px; }
@@ -256,6 +269,78 @@ form .form-item-separator {
           line-height: 30px;
           color: #a8a8a8;
           font-size: 14px; }
+
+/********************detail***************************/
+.flexslider {
+  margin: 0;
+  padding: 10px 20px;
+  position: relative; }
+  .flexslider .slides {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .flexslider .slides > li {
+      display: none; }
+    .flexslider .slides img {
+      width: 100%;
+      display: block; }
+  .flexslider .flex-control-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none; }
+  .flexslider .flex-direction-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .flexslider .flex-direction-nav a {
+      margin: -14px 0 0;
+      top: 50%;
+      width: 18px;
+      height: 28px;
+      background: red;
+      overflow: hidden;
+      display: block;
+      position: absolute;
+      z-index: 10;
+      cursor: pointer;
+      font-size: 0; }
+    .flexslider .flex-direction-nav a.flex-prev {
+      left: 0; }
+    .flexslider .flex-direction-nav a.flex-next {
+      right: 0; }
+    .flexslider .flex-direction-nav .flex-disabled {
+      cursor: default; }
+
+.detail .contact > .item {
+  width: 80px;
+  height: 53px;
+  display: block;
+  position: absolute;
+  top: -10px;
+  border-left: solid 1px #333;
+  text-align: center;
+  padding: 12px 5px; }
+  .detail .contact > .item > i {
+    width: 35px;
+    height: 35px;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    float: left; }
+  .detail .contact > .item > span {
+    line-height: 35px; }
+.detail .contact .telphone {
+  right: 90px; }
+.detail .contact .message {
+  right: 0; }
+.detail .icon-telphone {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAjCAYAAAD8BaggAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OThEQjMwMzY3Q0FCMTFFNTkyRERBRkFBRjBEMENFMjAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OThEQjMwMzc3Q0FCMTFFNTkyRERBRkFBRjBEMENFMjAiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5OERCMzAzNDdDQUIxMUU1OTJEREFGQUFGMEQwQ0UyMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5OERCMzAzNTdDQUIxMUU1OTJEREFGQUFGMEQwQ0UyMCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkQH6UAAAAQdSURBVHjavJh5bE1BFMZfq21StYWSoEGtFQ2lQoh9i2pQ1FK0VPUPS/8REmvEUiIkEgSxl9gSSxtrJPYtEaKWoGhtJRp7okjR+o58k5xe775369KT/JKZe6dzv86cOefMCwg4nOZRNhwsA61AIcgEGz3u7DyoAQaAN9aXpQlbyvUDVXsMOEgxYhFgA1jgUtBFEAPOgLr+BhtBjcFm9fyWai8GQ1wImg9WgGiKi3AiSD5aje0c0B4sV+N2gpYuRM3mfLL653yJCuQyJrFfDNJBGbfqJJ/XBNmgugtRc8Ec0IyimtoJku0IZn+XcryfYCwoYL81VyrAx0dngY8+mM1xRlSwdYIg0E/1D1nefwDDwFVQFSTQJ5bYCHoMboAqNu9DQBe2H4Ef3gS1ZbuMH7babTAJ7GN/EbgOTngZe5jYiTnAtrjCCH7zjy2LZPsl+Gwz2X6wkm3ZsiwQWgH/CaWYweAIGAq+2PmQmfidn0nFIS+wLQehq0MxstXHlJhEUOLv2DuxppbA9sPh3+0BvbnKPsUYQcVsh/sYNxnc5EkTe2Ljb95MTuk6MM6fGOPUT0Eb0IDLq/c2mP9honqWz1BR4lDQjIoEK1mhe8pZO1vep1jEbGNeuuf5TyaCrqh+f8v7ONWWCJ7m4yT+M0E6nliTqE4Vlz2VYCIoj8HPQ1+KVe/vqPaUyhIktsPGCTer453BNFIpgrYr3xitjnceU4UxidBRlSFIMvEatiUxrlJjMhlhjU+d8Fdk/QtBHuYqkz4GgVEq6SaDh+w3AaeclKNuBckqzVT9DQyWYp9AXxb+pjaS4r2Rn/kjGVjzGekz/KUr68ssFQZqM0OHsF/InPRWiZL00c5m7gYMFUnMgzF0Cyk96jkVJNuTCl6zL8XUVlUlSgHWg6WK/uh4yzzih3tBfbXCZSr45oKeTrN9ERgJvrM/Xjm82H0KzWU/jKWvCK/FZwsp3MwXRSFFfFaf16J5gdmTA5yUH5fABNWfzoxtxr8A3bjFxiZx5e6zzDUrnsIVPw06qJpK5loKjkNUuJN6SJZ8qupPo0+FqRvKRJ7AYlWMRaktzuSJNPYK9OFzYwNltSGq2+8Mb7lKe7N0XqeN+Lvc0gdqTEPeKCQZ12G9JMF2PW8v3iyOW12HfXGReCeCPKyBd6vV+cp7lvhWqYuwE8FK0pTDd52WsDl05DxVtK8G1+xOi0OTUNJLxbfoitTUkvk7MmAai+WF7xS3ILCCguRXkU0qFRU63TKryZFeq+50HnWVkl9QzvI0vbcpmzuxckhVPiSW+reCTPBLpi+1sBnznCK/cfXCOTbEMk58cnppwpZtbgTp0BHH8jbey8d8WQlz3RKIKTDL59ZKeRE8xvJEfivoTv9qzrwVpBL4M0Z52dajEFLugvpLgAEA1ZPwszc/7YoAAAAASUVORK5CYII=');
+  /*../images/icons/icon_telphone.png*/ }
+.detail .icon-message {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAeCAYAAABAFGxuAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6N0ZGMzYwREQ3Q0FCMTFFNTk4NEE5N0JCRjQ3QzVBQUYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6N0ZGMzYwREU3Q0FCMTFFNTk4NEE5N0JCRjQ3QzVBQUYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3RkYzNjBEQjdDQUIxMUU1OTg0QTk3QkJGNDdDNUFBRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3RkYzNjBEQzdDQUIxMUU1OTg0QTk3QkJGNDdDNUFBRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmoGoQcAAAE4SURBVHja7Nc9CsIwFAfwtPhxAU/h4BlEXAXvIHgFHURFB90d1TM4uHsJwcnVRT2AgqjvwQvEkmibvIYMPvhDSV9ffzRD2yjadLpCCExBhFEPyAoxC0hJhFW1OEAUVlG3fVvI0DNkAmmpCyrsDrlSwwHS94Sa0z1PkAqkjIux0nCD1KmhRxf4QPXonnUyiCQM6+gR94F6tldH9WSsucAHTqLOOpQJpuKuOeAkCmc3dahvMIlrMONUFM7emxrjH4P2jLjUqDQwLlwmVFqYKy4zKgvMFmeFygrT4UZfege2KBtYEjc2vLpwbWqLsoUlcbMErk9r1ijh+HEocTuCyHJGucJMOGeUy1aatpUFxfHEVFyVji8cAzl/QC6Ms1i2Mpf6w/6wvCuKNp1XqE8sRNgLYcsAceu3AAMA/mRwOqG+zVQAAAAASUVORK5CYII=');
+  /*../images/icons/icon_message.png*/ }
 
 .footer {
   height: 52px;

@@ -7,18 +7,18 @@ block content
         .item
           #advancedDropzone.advanced-area 上传图
       .clearfix.margin-b10
-      .form-item-separator   
+      .item-separator   
       input#hdUploadFiles(type="hidden", name="file[files]")
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
         .cell
           input#inputTitle.form-control(type="text", name="exchange[title]", validate="{required: true, rangelength: [6,20]}", placeholder="闲余的名称和类型（6-20字）")
-      .form-item-separator
+      .item-separator
       .form-item
         label.control-label(for="inputClaim") 条件：
         .cell
           textarea#inputClaim.form-control(type="text", rows="3", name="exchange[claim]", validate="{required: true, rangelength: [5,50]}", placeholder="为你出售的宝贝吆喝几句（50字以内）")
-      .form-item-separator
+      .item-separator
       .col-xs-6.form-item
         label.control-label(for="selClassification") 分类：
         .cell
@@ -44,7 +44,7 @@ block content
             option 4成新
             option 2成新
       .clearfix
-      .form-item-separator
+      .item-separator
       .form-item.col-xs-6
         label.control-label(for="selCycle") 周期：
         .cell
@@ -64,7 +64,7 @@ block content
             option 小说
             option 其他
       .clearfix
-      .form-item-separator
+      .item-separator
       .form-item.col-xs-6
         label.control-label(for="inputPhoneNumber") 手机号：
         .cell
@@ -74,13 +74,13 @@ block content
         .cell
           input#inputContact.form-control(type="text", name="exchange[contact]", validate="{required: true, rangelength: [1,10]}", placeholder="联系人")
       .clearfix
-      .form-item-separator
+      .item-separator
       .form-item
         label.control-label(for="inputLoco ") 交换地点：
         .cell(style="padding-right:50px;")
           input#inputLoco.form-control(type="text", name="exchange[loco]", validate="{required: true, rangelength: [1,100]}" placeholder="填写你希望的交易地点")
         .div.appoint 约定
-      .form-item-separator
+      .item-separator
       .form-item
         .col-xs-6.align-c
           button.btn.btn-green.brs5(type="reset") 重&nbsp;&nbsp;&nbsp;&nbsp;填

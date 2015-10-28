@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Slide Mobile自适应滑动箭头</title>
+
+    <link href="assets/styles/flexslider.css" rel="stylesheet"/>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="assets/scripts/jquery.flexslider.js"></script>
+    <script src="assets/scripts/jquery.mmenu.min.all.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            if ($(".flexslider").length != 0) {
+                $('.flexslider').flexslider({
+                    animation: "slide"
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <section>
+        <div class="flexslider">
+            <ul class="slides">
+                <li><a href="javascript:;"></a><img alt="UU海客" src="/app/assets/images/Produc1_303x301.jpg"></li>
+                <li><a href="javascript:;"></a><img alt="UU海客" src="/app/assets/images/Produc1_303x301.jpg"></li>
+                <li><a href="javascript:;"></a><img alt="UU海客" src="/app/assets/images/Produc1_303x301.jpg"></li>
+                <li><a href="javascript:;"></a><img alt="UU海客" src="/app/assets/images/Produc1_303x301.jpg"></li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>
