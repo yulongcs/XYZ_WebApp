@@ -39,7 +39,7 @@ exports.detail = function (req, res) {
         models.Exchange.findById(id, { include: [models.File] }).then(function (result) {
             res.render('pages/exchange/detail', {
                 title: '交换',
-                Exchanges: result
+                Exchange: result
             })
         });
     }

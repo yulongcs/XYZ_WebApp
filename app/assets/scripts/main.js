@@ -1,5 +1,9 @@
 ﻿
 $(function () {
+
+    $("html, .page > .content, .pro-image-list").niceScroll();
+
+
     $.metadata.setType("attr", "validate");
     var validator = $("form").validate();
 

@@ -1,43 +1,15 @@
-var async = require('async');
+ï»¿var async = require('async');
+var models = require('../models');
 
 // index page
 exports.index = function (req, res) {
-
-    async.series({ //ÐòÁÐÖ´ÐÐ
-        one: function (callback) {
-            setTimeout(function () {
-                //callback(null, 1);
-            }, 1000);
-        },
-        two: function (callback) {
-            setTimeout(function () {
-                //callback(null, 2);
-            }, 100);
-        }
-    },function (err, results) {
-        debugger;
-        // results is  equals to: {two: 2, one: 1}
+    models.Exchange.findAll({
+        include: [models.File]
+    }).then(function (result) {
+        res.render('pages/index', {
+            title: 'é—²ä½™åº§ - é¦–é¡µ',
+            Exchanges: result
+        });
     });
-
-    async.parallel({ //Æ½ÐÐÖ´ÐÐ
-        one: function (callback) {
-            setTimeout(function () {
-                callback(null, 1);
-            }, 1000);
-        },
-        two: function (callback) {
-            setTimeout(function () {
-                callback(null, 2);
-            }, 100);
-        }
-    }, function (err, results) {
-        debugger;
-        // results is now equals to: {one: 1, two: 2}
-    });
-
-
-    res.render('pages/index', {
-        title: 'index'
-    })
 }
   

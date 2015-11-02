@@ -66,6 +66,7 @@ html
         .recommend.row
           .recommend_icon 闲余推荐
           .pro-list
+           each item in Exchanges
             blockquote.blockquote.blockquote-default
               .head
                 a(href="#")
@@ -73,22 +74,11 @@ html
                 .head-cell
                   span.username 不羁放纵爱自由
                   span.productday 2天前
-              h3 PSP3006黑色
-              div
-                .pro-prices
-                  .act-price
-                    i ￥
-                    em 400
-                  .orig-price ￥2200
-                .pro-control 八成新
-                .clearfix
+              h3(title="#{item.title}") #{item.title}
               .pro-image-list
-                a(href="#")
-                  img(src="/app/assets/images/Produc1_303x301.jpg", width="32%")
-                a(href="#")
-                  img(src="/app/assets/images/Produc1_303x301.jpg", width="32%")
-                a(href="#")
-                  img(src="/app/assets/images/Produc1_303x301.jpg", width="32%")
+              each files in item.Files
+                a(href="/exchange/detail/#{item.id}")
+                  img(src="#{files.path}")
               .foot
                 .row
                   .col-xs-6
