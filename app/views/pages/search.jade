@@ -1,0 +1,90 @@
+﻿doctype
+html
+  head
+    meta(charset="utf-8")
+    title #{title}
+    include ./../includes/head
+  body
+    .page
+      .content(style="top:0; background-color: transparent")
+        .main-top
+          .logo
+            a(href="#")
+              img(src="/app/assets/images/logo.png", alt="logo")
+          .btn-search 搜一搜 有闲余
+        .main-menu
+          ul
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon11.png", alt="")
+                span 居家生活
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon12.png", alt="")
+                span 家用电器
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon13.png", alt="")
+                span wifi设备
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon14.png", alt="")
+                span 摄影器材
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon21.png", alt="")
+                span 服饰鞋包
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon22.png", alt="")
+                span 美妆护肤
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon23.png", alt="")
+                span 孕婴儿童
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon24.png", alt="")
+                span 宠物当家
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon31.png", alt="")
+                span 书籍文体
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon32.png", alt="")
+                span 交通工具
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon33.png", alt="")
+                span 卡券票务
+            li
+              a(href="#")
+                img(src="/app/assets/images/icons/icon34.png", alt="")
+                span 其他
+        .clearfix
+        .recommend.row
+          .recommend_icon 闲余推荐
+          .pro-list
+           each item in Exchanges
+            blockquote.blockquote.blockquote-default
+              .head
+                a(href="#")
+                  img.usercard(src="/app/assets/images/user_photo.png", alt="")
+                .head-cell
+                  span.username 不羁放纵爱自由
+                  span.productday 2天前
+              h3(title="#{item.title}") #{item.title}
+              .pro-image-list
+              each files in item.Files
+                a(href="/exchange/detail/#{item.id}")
+                  img(src="#{files.path}")
+              .foot
+                .row
+                  .col-xs-6
+                    p.item.like 收藏
+                  .col-xs-6
+                    p.item.share 分享
+
+      include ./../includes/footer
+    include ./../includes/footscript
