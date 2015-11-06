@@ -3,6 +3,7 @@ var Exchange = require('../app/controlles/exchange.js');
 var Buy = require('../app/controlles/buy.js');
 var Sales = require('../app/controlles/sales.js');
 var User = require('../app/controlles/user.js');
+var Search = require('../app/controlles/search.js');
 var AdminProduct = require('../app/controlles/admin/product.js');
 var Common = require('../app/controlles/_common.js');
 var multer = require('multer');
@@ -40,7 +41,7 @@ module.exports = function (app) {
     //// User
     app.get('/user/index', upload.array(), User.index);
     app.get('/user/login', upload.array(), User.login);
-    pp.post('/user/login/save', upload.array(), User.login_save);
+    app.post('/user/login/save', upload.array(), User.login_save);
     app.get('/user/register', upload.array(), User.register);
     app.post('/user/register/save', upload.array(), User.register_save);
     app.get('/user/newforgot', upload.array(), User.newforgot);
@@ -50,6 +51,9 @@ module.exports = function (app) {
     app.get('/user/release', upload.array(), User.release);
     app.get('/user/facorites', upload.array(), User.facorites);
     app.get('/user/suggest', upload.array(), User.suggest);
+
+    //// Search
+    app.get('/search', Search.index)
 
     //// Admin ************************************************************************
 
