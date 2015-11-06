@@ -1,5 +1,4 @@
-﻿var async = require('async');
-var models = require('../models');
+﻿var models = require('../models');
 
 // index page
 exports.index = function (req, res) {
