@@ -1,4 +1,25 @@
 ﻿extends ../../layout
 
 block content
-  .content 登录
+  .content.padding-10
+    form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
+      span.callback-has-error 你输入的账号密码不匹配
+      a.link.btn-green.pull-right(href="javascript:") 忘记密码了
+      .clearfix
+      table.table-form
+        tr
+          td
+            label.control-label(for="inputName") 账号
+          td
+            input#inputName.form-control(type="text", name="user[name]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入您的昵称、手机号")
+        tr
+          td
+            label.control-label(for="inputPassword") 密码
+          td
+            input#inputPassword.form-control(type="password", name="user[password]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入自己设置的秘密")
+        tr
+          td
+            label.control-label(for="inputRandomCode") 验证码
+          td
+            input#inputRandomCode.form-control(type="text", name="user[randomCode]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入右边的验证码")
+      button.btn.btn-green.brs5.margin-10(type="submit", style="width: 100%") 提 交
