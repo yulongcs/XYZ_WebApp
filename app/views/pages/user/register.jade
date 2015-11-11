@@ -1,4 +1,27 @@
 ﻿extends ../../layout
 
 block content
-  .content 注册
+  .content.padding-10
+    form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
+      table.table-form
+        tr
+          td
+            label.control-label(for="inputName") 昵称
+          td
+            input#inputName.form-control(type="text", name="user[name]", validate="{required: true, rangelength: [6,20]}", placeholder="为自己的闲余座起一个昵称呗")
+        tr
+          td
+            label.control-label(for="inputPhone") 手机号
+          td
+            input#inputName.form-control(type="text", name="user[phone]", validate="{required: true, mobile: true}", placeholder="请输入自己的手机号")
+        tr
+          td
+            label.control-label(for="inputPassword") 密码
+          td
+            input#inputPassword.form-control(type="password", name="user[password]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入自己设置的密码")
+        tr
+          td
+            label.control-label(for="inputRandomCode") 验证码
+          td
+            input#inputRandomCode.form-control(type="text", name="user[randomCode]", validate="{required: true, rangelength: [6,20]}", placeholder="输入手机收到的验证码")
+      button.btn.btn-green.brs5.margin-10(type="submit", style="width: 100%") 提 交

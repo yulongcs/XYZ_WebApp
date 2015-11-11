@@ -54,7 +54,7 @@ exports.release = function (req, res) {
 }
 
 exports.facorites = function (req, res) {
-    res.render('pages/user/facorites', {
+    res.render('pages/user/favorites', {
         title: '我的收藏'
     });
 }

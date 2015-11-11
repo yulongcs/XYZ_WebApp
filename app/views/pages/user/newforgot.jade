@@ -1,4 +1,24 @@
 ﻿extends ../../layout
 
 block content
-  .content 找回密码
+  .content.padding-10
+    form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
+      span.link.btn-green 请用注册时用的手机号找回密码
+      .clearfix
+      table.table-form
+        tr
+          td
+            label.control-label(for="inputPhone") 手机号
+          td
+            input#inputName.form-control(type="text", name="user[phone]", validate="{required: true, mobile: true}", placeholder="请输入自己的手机号")
+        tr
+          td
+            label.control-label(for="inputRandomCode") 验证码
+          td
+            input#inputRandomCode.form-control(type="text", name="user[randomCode]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入右边的验证码")
+        tr
+          td
+            label.control-label(for="inputPassword") 密码
+          td
+            input#inputPassword.form-control(type="password", name="user[password]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入你的新密码")
+      button.btn.btn-green.brs5.margin-10(type="submit", style="width: 100%") 提 交

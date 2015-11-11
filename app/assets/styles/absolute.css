@@ -72,6 +72,9 @@ html > body .clearfix {
 .width-full {
   width: 100%; }
 
+.border-none {
+  border: none; }
+
 .white-space {
   white-space: nowrap;
   -ms-text-overflow: ellipsis;
@@ -83,11 +86,12 @@ html > body .clearfix {
   width: 120px;
   font-size: 16px; }
 
-.btn.btn-green {
+.btn-green {
   background-color: #01af63;
   color: #ffffff; }
-  .btn.btn-green:hover {
-    background-color: #048c51; }
+  .btn-green:hover, .btn-green:focus {
+    background-color: #048c51;
+    color: #ffffff; }
 
 .link.btn-green {
   color: #01af63; }
@@ -109,7 +113,8 @@ html > body .clearfix {
     .main-top .logo a {
       color: #FFFFFF;
       text-decoration: none;
-      text-align: center; }
+      text-align: center;
+      vertical-align: baseline; }
       .main-top .logo a img {
         width: 100%; }
   .main-top .btn-search {

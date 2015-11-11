@@ -1,4 +1,12 @@
 ﻿extends ../../layout
 
 block content
-  .content 意见
+  .content.padding-10
+    form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
+      h5 我们都是闲余座， 我们共同改进。
+      .clearfix
+      table.width-full
+        tr
+          td
+            textarea#inputClaim.form-control(type="text", rows="8", name="user[suggest]", validate="{required: true, rangelength: [5,50]}")
+      button.btn.btn-green.brs5.margin-10(type="submit", style="width: 100%") 提 交

@@ -1,4 +1,22 @@
 ﻿extends ../../layout
 
 block content
-  .content 修改密码
+  .content.padding-10
+    form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
+      table.table-form
+        tr
+          td
+            label.control-label(for="inputOldPassword") 原密码
+          td
+            input#inputOldPassword.form-control(type="password", name="user[oldpassword]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入原设置的秘密")
+        tr
+          td
+            label.control-label(for="inputNewPassword") 新密码
+          td
+            input#inputNewPassword.form-control(type="password", name="user[newpassword]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入原设置的秘密")
+        tr
+          td
+            label.control-label(for="inputConfirmPassword") 确认
+          td
+            input#inputOldPassword.form-control(type="password", name="user[confirmpassword]", validate="{required: true, rangelength: [6,20], equalTo: '#inputNewPassword'}", placeholder="再次输入新密码")
+      button.btn.btn-green.brs5.margin-10(type="submit", style="width: 100%") 提 交
