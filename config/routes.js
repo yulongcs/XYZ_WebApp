@@ -49,7 +49,7 @@ module.exports = function (app) {
     app.get('/user/resetpwd', upload.array(), User.resetpwd);
     app.post('/user/resetpwd/save', upload.array(), User.resetpwd_save);
     app.get('/user/release', upload.array(), User.release);
-    app.get('/user/facorites', upload.array(), User.facorites);
+    app.get('/user/favorites', upload.array(), User.facorites);
     app.get('/user/suggest', upload.array(), User.suggest);
 
     //// Search
