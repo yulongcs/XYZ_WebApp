@@ -290,6 +290,39 @@ html > body .clearfix { display: block; } /* End hide from IE Mac */
     .item-separator{
         height: 1px; background:#aae4cb; margin-bottom:10px;
     }
+
+    .pro-item {
+        &:last-child{
+            margin-bottom:0;
+        }
+
+        .foot{
+            .row{
+                .col-xs-6{
+                    padding:0;
+                    .item {
+                        margin-right:20px;
+                        &:last-child{
+                            margin-right:0;
+                        }
+                    }
+                    a.btn-green{
+                        padding:0 5px;
+                        margin-right:10px;
+                        cursor:pointer;
+                        &:first-child{
+                            margin-right:0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+     &:last-child{
+            margin-bottom:0;
+            background:red;
+        }
 }
 
 /*upload image*/
@@ -536,6 +569,20 @@ html > body .clearfix { display: block; } /* End hide from IE Mac */
     }
 }
 
+/**************************************/
+.pro-image-list {
+    width: 100%;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow:auto;
+    a {
+        text-decoration: none;
+        text-align: center;
+    }
+    img{
+        margin:0 5px 5px 0;
+    }
+}
 
 //login
 .table-form{
