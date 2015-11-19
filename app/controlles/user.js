@@ -24,6 +24,8 @@ exports.register = function (req, res) {
 }
 
 exports.register_save = function (req, res) {
+    var userData = req.body.user;
+
     return res.send("OK");
 }
 

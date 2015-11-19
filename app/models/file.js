@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 module.exports = function (sequelize, DataTypes) {
-    var File = sequelize.define("File", {
+    var file = sequelize.define("File", {
         fieldname: { type: DataTypes.STRING(100), allowNull: false },
         originalname: { type: DataTypes.STRING(100), allowNull: false },
         encoding: { type: DataTypes.STRING(100), allowNull: false },
@@ -13,7 +13,7 @@ module.exports = function (sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function(models) {
-                File.belongsTo(models.Exchange, {
+                file.belongsTo(models.Exchange, {
                     onDelete: "CASCADE",
                     foreignKey: {
                         allowNull: false
@@ -23,5 +23,5 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    return File;
+    return file;
 };
