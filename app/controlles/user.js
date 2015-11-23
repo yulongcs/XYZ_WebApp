@@ -24,7 +24,19 @@ exports.register = function (req, res) {
 }
 
 exports.register_save = function (req, res) {
-    var userData = req.body.user;
+    var user = req.body.user;
+    console.log(req.body);
+    var name = user.name;
+    var phone = user.phone;
+    var password = user.password;
+    debugger;
+    models.user.find({ name: name })
+        .then(function(user) {
+          
+        })
+        .error(function(err) {
+            
+        })
 
     return res.send("OK");
 }

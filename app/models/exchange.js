@@ -18,7 +18,7 @@ module.exports = function (sequelize, dataTypes) {
     }, {
         classMethods: {
             associate: function (models) {
-                exchange.hasMany(models.file);
+                exchange.hasMany(models.File);
             }
         }
     });

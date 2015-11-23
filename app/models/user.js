@@ -9,7 +9,7 @@ module.exports = function (sequelize, dataTypes) {
     }, {
         classMethods: {
             associate: function (models) {
-                user.hasMany(models.exchange);
+                user.hasMany(models.Exchange);
             }
         }
     });
