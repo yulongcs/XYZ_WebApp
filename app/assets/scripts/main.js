@@ -5,7 +5,7 @@ $(function () {
 
 
     $.metadata.setType("attr", "validate");
-    var validator = $("form").validate();
+    //var validator = $("form").validate();
 
     $("button[type=reset]").click(function() {
         validator.resetForm();
@@ -24,7 +24,7 @@ $(function () {
     //                    window.location.href = "/admin/product";
     //                }
     //            },
-    //            error: function(jqXhr, textStatus, errorThrown) {
+    //            error: function (jqXhr, textStatus, errorThrown) {
     //                //textStatus :"timeout", "error", "notmodified" 和 "parsererror"。
     //                if (jqXhr.responseJSON) {
     //                    var errorMsg = jqXhr.responseJSON.msg;

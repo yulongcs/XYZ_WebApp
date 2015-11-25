@@ -24,21 +24,45 @@ exports.register = function (req, res) {
 }
 
 exports.register_save = function (req, res) {
-    var user = req.body.user;
+    var _user = req.body.user;
     console.log(req.body);
-    var name = user.name;
-    var phone = user.phone;
-    var password = user.password;
-    debugger;
-    models.user.find({ name: name })
-        .then(function(user) {
-          
+    //check random code
+    //短信验证码错误
+
+    //check phone
+    models.User.findOne({ phone: _user.phone })
+        .then(function (user) {
+            if (user) {
+                return res.status(500).send({ msg: "该手机已被注册,如忘记密码请在登录界面选择“找回密码”" });
+            }
         })
         .error(function(err) {
-            
+            console.log(err);
+        });
+    //check user
+    //改用户名已被注册
+    models.User.findOne({ name: _user.name })
+        .then(function(user) {
+            if (user) {
+                return res.status(500).send({ msg: "改用户名已被注册" });
+            }
         })
+        .error(function(err) {
+        });
 
-    return res.send("OK");
+    debugger;
+    //save
+  
+    models.User.create(_user)
+        .then(function(user) {
+            debugger;
+        }).catch(function (err) {
+            debugger;
+            return res.status(500).send({ msg: err.message });
+        });
+
+
+//return res.send("OK");
 }
 
 exports.newforgot = function (req, res) {

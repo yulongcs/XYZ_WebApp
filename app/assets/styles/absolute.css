@@ -394,14 +394,14 @@ html > body .clearfix {
     line-height: 32px;
     vertical-align: bottom; }
 
-form .validate-has-error {
-  display: block;
-  font-size: 12px;
-  color: #cc3f44;
-  position: absolute;
-  margin: -10px 20px; }
+form .validate-has-error, form label.error {
+  display: block !important;
+  font-size: 12px !important;
+  color: #cc3f44 !important;
+  position: absolute !important;
+  margin: -10px 20px !important; }
 form .callback-has-error {
-  color: #cc3f44; }
+  color: #cc3f44 !important; }
 
 /*********************List****************************/
 /*waterfull*/

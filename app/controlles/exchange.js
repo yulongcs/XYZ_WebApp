@@ -48,6 +48,7 @@ exports.detail = function (req, res) {
 exports.save = function (req, res) {
     var exchangeData = req.body.exchange;
     var fileData = req.body.files;
+    debugger;
     models.sequelize.transaction(function (t) {
         // chain all your queries here. make sure you return them.
         return models.Exchange.create(exchangeData, { transaction: t }).

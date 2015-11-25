@@ -2,7 +2,7 @@
 
 block content
   .content.row
-    form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
+    form#form-exchange.validate(role="form", method="post", action="/exchange/save", enctype="multipart/form-data")
       .uploadimg-list
         .item
           #advancedDropzone.advanced-area 上传图
@@ -97,23 +97,23 @@ block content
             button.btn.btn-white(type="button", data-dismiss="modal") Close
             button.btn.btn-info(type="button") Save changes
   script(type = "text/javascript").
-    jQuery(document).ready(function($) {
-        var $advancedDropzone = $("#advancedDropzone"),
-            $hdUploadFiles = $("#hdUploadFiles"),
-            example_dropzone = $("#advancedDropzone").dropzone({
+    $(function() {
+    var $advancedDropzone = $("#advancedDropzone"),
+        $hdUploadFiles = $("#hdUploadFiles"),
+        example_dropzone = $("#advancedDropzone").dropzone({
                 paramName: "file", // defalut:"file", The name that will be used to transfer the file
                 maxFilesize: 10, // MB
                 url: '/projects',
                 acceptedFiles: 'image/*',
-                addedfile: function(file) {
+                addedfile: function (file) {
 
                 },
-                uploadprogress: function(file, progress, bytesSent) {
+                uploadprogress: function (file, progress, bytesSent) {
 
                 },
-                success: function(file, tempFile) {
+                success: function (file, tempFile) {
                      var jsonFilesArr = $hdUploadFiles.val() === "" ? new Array():JSON.parse($hdUploadFiles.val());
-                     jsonFilesArr.push(tempFile);
+                     jsonFilesArr.push (tempFile);
                      $advancedDropzone.parent().before('<img alt="user-image" src="' +tempFile.path + '">');
                      $hdUploadFiles.val(JSON.stringify(jsonFilesArr));
                      //- var jsonStr = JSON.stringify(jsonFilesArr)
@@ -123,10 +123,38 @@ block content
                     //- $advancedDropzone.parent().before('<img alt="user-image" src="/' + tempURL + '">');
                     //- $hdUploadFiles.val(filesArr.join(";"));
                 },
-                error: function(file, msg) {
-                   jQuery('#modal-1').modal('show', {backdrop: 'fade'});
+                error: function (file, msg) {
+                   jQuery('#modal-1').modal ('show', {backdrop: 'fade'});
                    file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+                }
+            });
+
+            var validator = $('#form-exchange').validate();
+            $('#form-exchange').submit(function (ev) {
+                ev.preventDefault();
+                if (validator.form()) {
+                    var form = $(this);
+                    $.ajax({
+                        url: form.attr('action'),
+                        type: 'POST',
+                        data: form.serialize(),
+                        success: function (result) {
+                            if (result === "OK") {
+                                window.location.href = "/admin/product";
+                            }
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            //textStatus :"timeout", "error", "notmodified" 和 "parsererror"。
+                            debugger;
+                            if (jqXhr.responseJSON) {
+                                var errorMsg = jqXhr.responseJSON.msg;
+                                alert (errorMsg)
+                            } else {
+                                alert("unknow error")
+                            }
+                        }
+                    });
                 }
             });
     });

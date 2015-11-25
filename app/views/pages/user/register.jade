@@ -2,7 +2,7 @@
 
 block content
   .content.padding-10
-    form.validate(role="form", method="post", action="/user/register/save", enctype="multipart/form-data")
+    form#form-register.validate(role="form", method="post", action="/user/register/save", enctype="multipart/form-data")
       table.table-form
         tr
           td
@@ -13,7 +13,7 @@ block content
           td
             label.control-label(for="inputPhone") 手机号
           td
-            input#inputName.form-control(type="text", name="user[phone]", validate="{required: true, mobile: true}", placeholder="请输入自己的手机号")
+            input#inputPhone.form-control(type="text", name="user[phone]", validate="{required: true, mobile: true}", placeholder="请输入自己的手机号")
         tr
           td
             label.control-label(for="inputPassword") 密码
@@ -25,3 +25,34 @@ block content
           td
             input#inputRandomCode.form-control(type="text", name="user[randomCode]", validate="{required: true, rangelength: [6,20]}", placeholder="输入手机收到的验证码")
       button.btn.btn-green.brs5.margin-10(type="submit", style="width: 100%") 提 交
+  script(type="text/javascript").
+    $(function() {
+
+      var validator = $("#form-register").validate();
+      $('#form-register').submit(function (ev) {
+          ev.preventDefault();
+          if (validator.form()) {
+              var form = $(this);
+              $.ajax({
+                  url: form.attr('action'),
+                  type: 'POST',
+                  data: form.serialize(),
+                  success: function (result) {
+                      if (result === "OK") {
+                         alert("ok")
+                      }
+                  },
+                  error: function (jqXhr, textStatus, errorThrown) {
+                      //textStatus :"timeout", "error", "notmodified" 和 "parsererror"。
+                      debugger;
+                      if (jqXhr.responseJSON) {
+                          var errorMsg = jqXhr.responseJSON.msg;
+                          alert (errorMsg)
+                      } else {
+                          alert ("unknow error")
+                      }
+                  }
+              });
+          }
+      });
+    });
