@@ -1,4 +1,5 @@
 ﻿var models = require('../models');
+var async = require('async');
 
 // index page
 exports.index = function(req, res) {
@@ -26,40 +27,75 @@ exports.register = function (req, res) {
 exports.register_save = function (req, res) {
     var _user = req.body.user;
     console.log(req.body);
+
+    async.series({
+        //one: function (callback) {
+        //    debugger;
+        //    setTimeout(function () {
+        //        callback(null, 1);
+        //    }, 1000);
+        //},
+
+        //two: function (callback) {
+        //    debugger;
+        //    setTimeout(function () {
+        //        callback(null, 2);
+        //    }, 100);
+        //}
+        checkPhone: function(callback) {
+            //check phone
+            models.User.findOne({ where: { phoneNumber: _user.phone }})
+                .then(function (phone) {
+                    if (phone) {
+                        return res.status(500).send({ msg: "该手机已被注册,如忘记密码请在登录界面选择“找回密码”" });
+                    }
+                   return callback(null);
+                })
+                .error(function(err) {
+                    console.log(err);
+                });
+        },
+        checkUser: function(callback) {
+            //check user
+            //改用户名已被注册
+            models.User.findOne({ where: { name: _user.name } })
+                .then(function (user) {
+                    if (user) {
+                        return res.status(500).send({ msg: "改用户名已被注册" });
+                    }
+                   return callback(null);
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
+        },
+        save: function (callback) {
+            debugger;
+            models.User.create({
+                    name: _user.name,
+                    phoneNumber: _user.phone,
+                    password: _user.password
+                })
+                .then(function(user) {
+                    debugger;
+                    return res.send("OK");
+                }).catch(function(err) {
+                    debugger;
+                    return res.status(504).send({ msg: err.message });
+                });
+        }
+    }, function (err, results) {
+        debugger;
+        // results is now equals to: {one: 1, two: 2}
+    });
+
     //check random code
     //短信验证码错误
 
-    //check phone
-    models.User.findOne({ phone: _user.phone })
-        .then(function (user) {
-            if (user) {
-                return res.status(500).send({ msg: "该手机已被注册,如忘记密码请在登录界面选择“找回密码”" });
-            }
-        })
-        .error(function(err) {
-            console.log(err);
-        });
-    //check user
-    //改用户名已被注册
-    models.User.findOne({ name: _user.name })
-        .then(function(user) {
-            if (user) {
-                return res.status(500).send({ msg: "改用户名已被注册" });
-            }
-        })
-        .error(function(err) {
-        });
+    
 
-    debugger;
-    //save
-  
-    models.User.create(_user)
-        .then(function(user) {
-            debugger;
-        }).catch(function (err) {
-            debugger;
-            return res.status(500).send({ msg: err.message });
-        });
+    //debugger;
+    
 
 
 //return res.send("OK");
