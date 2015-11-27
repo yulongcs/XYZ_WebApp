@@ -2,8 +2,8 @@
 
 block content
   .content.padding-10
-    form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
-      span.callback-has-error 你输入的账号密码不匹配
+    form#form-login.validate(role="form", method="post", action="/user/login/save", enctype="multipart/form-data")
+      span.callback-has-error
       a.link.btn-green.pull-right(href="javascript:") 忘记密码了
       .clearfix
       table.table-form
@@ -23,3 +23,38 @@ block content
           td
             input#inputRandomCode.form-control(type="text", name="user[randomCode]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入右边的验证码")
       button.btn.btn-green.brs5.margin-10(type="submit", style="width: 100%") 提 交
+  script(type="text/javascript").
+    $(function() {
+
+      var validator = $("#form-login").validate();
+      $('#form-loginA').submit(function (ev) {
+          ev.preventDefault();
+          if (validator.form()) {
+              var form = $(this);
+              $.ajax({
+                  url: form.attr('action'),
+                  type: 'POST',
+                  data: form.serialize(),
+                  success: function (result) {
+                      if (result === "OK") {
+                         alert("ok")
+                      }
+                  },
+                  error: function (jqXhr, textStatus, errorThrown) {
+                      //textStatus :"timeout", "error", "notmodified" 和 "parsererror"。
+                      if(jqXhr.status == 500){ 
+                        if (jqXhr.responseJSON) {
+                           var errorMsg = jqXhr.responseJSON.msg;
+                           $('.callback-has-error').html(errorMsg);
+                          } else {
+                          alert ("unknow error");
+                        }
+                      }
+                      else{
+                        alert ("server error");
+                      }                      
+                  }
+              });
+          }
+      });
+    });

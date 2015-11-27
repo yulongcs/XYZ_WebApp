@@ -15,7 +15,25 @@ exports.login = function (req, res) {
 }
 
 exports.login_save = function (req, res) {
-    return res.send("OK");
+    var _user = req.body.user;
+    console.log(req.body);
+    models.User.findOne({ where: { $or: [{ name: _user.name }, { phoneNumber: _user.phone }] } })
+        .then(function (user) {
+            debugger;
+            if (!user) {
+                debugger;
+                return res.status(500).send({ msg: "你输入的账号不存在" });
+            }
+            if (user.password !== _user.password) {
+                return res.status(500).send({ msg: "你输入的账号密码不匹配" });
+            }
+            debugger;
+            req.session.user = user
+            return res.send("OK");
+        })
+        .error(function(err) {
+            console.log(err);
+        });
 }
 
 exports.register = function (req, res) {
