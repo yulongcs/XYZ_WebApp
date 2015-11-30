@@ -6,6 +6,8 @@ var Sequelize = require('sequelize');
 var http = require('http');
 var path = require('path');
 var models = require("./app/models");
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 
 app = express();
 app.use(express.static(path.join(__dirname, '')));//设置网站根目录
@@ -14,6 +16,15 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({
+    secret: '12345',
+    name: 'xyzapp', //这里的name值得是cookie的name，默认cookie的name是：connect.sid
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, //设置maxAge是1000ms，即1天后session和相应的cookie失效过期
+    resave: false,
+    saveUninitialized: true
+}));
+
 
 app.locals.moment = require('moment')
 
