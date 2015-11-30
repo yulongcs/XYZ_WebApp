@@ -51,6 +51,9 @@ html > body .clearfix {
   display: none; }
 
 /* End Clearfix */
+a:hover, a:focus {
+  text-decoration: none; }
+
 .margin-b10 {
   margin-bottom: 10px; }
 
@@ -94,9 +97,11 @@ html > body .clearfix {
     color: #ffffff; }
 
 .link.btn-green {
-  color: #01af63; }
+  color: #01af63;
+  background-color: transparent; }
   .link.btn-green:hover {
-    color: #048c51; }
+    color: #048c51;
+    background-color: transparent; }
 
 /* Main top style
 /*------------------------------------------*/
@@ -545,7 +550,8 @@ form .callback-has-error {
 .list-item {
   padding: 0 20px 0 30px;
   font-size: 14px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  display: block; }
   .list-item:first-child {
     padding-top: 10px; }
   .list-item img.usercard {

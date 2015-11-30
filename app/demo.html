@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../xenon/assets/js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+
+
+
+<script type="text/javascript">
+    $(function() {
+        //if (_currentEnv != "Corporate" && "Corporate" == environment) {
+
+        //    var fnCallBackName = "searchCallback" + searchEngine + "_" + environment;
+        //    $.extend(option, {
+        //        url: sysInfo.environmentUrls["Corporate"] + "/AjaxHandler/CrossDomainSearchHandler.ashx?portalId=" + vkbFrame.sysInfo.portalId,
+        //        type: "GET",
+        //        dataType: "jsonp",
+        //        jsonp: "callback",
+        //        data: "data=" + encodeURIComponent(option.data),
+        //        jsonpCallback: fnCallBackName
+        //    });
+
+        //    if (!window[fnCallBackName]) {
+
+        //        (window[fnCallBackName] = function (responseData) {
+
+        //            var searchType = arguments.callee["name"];
+        //            var arguments = arguments;
+        //            debugger;
+
+        //            //if (searchType == '') {
+        //            //    searchType = fnCallBackName;
+        //            //}
+
+        //            alert(searchType);
+
+        //            if (responseData) {
+        //                if (currentAjaxs[searchType.replace("searchCallback", "")]["success"]) {
+        //                    currentAjaxs[searchType.replace("searchCallback", "")].success(responseData, "success");
+        //                }
+        //            }
+        //        })["name"] = fnCallBackName;
+        //    }
+        //}
+        var fnCallBackName = "AAAAAAAAAA";
+       
+        (window[fnCallBackName] = function(responseData) {
+
+            var searchType = arguments.callee["name"];
+            var arguments = arguments;
+            debugger;
+            alert(searchType);
+            //if (searchType == '') {
+            //    searchType = fnCallBackName;
+            //}
+
+            alert(searchType);
+
+            //if (responseData) {
+            //    if (currentAjaxs[searchType.replace("searchCallback", "")]["success"]) {
+            //        currentAjaxs[searchType.replace("searchCallback", "")].success(responseData, "success");
+            //    }
+            //}
+        })["name"] = fnCallBackName;
+        var arguments = arguments;
+        debugger;
+    });
+</script>
+</body>
+</html>

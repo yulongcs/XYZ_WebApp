@@ -2,16 +2,26 @@
 var async = require('async');
 
 // index page
-exports.index = function(req, res) {
-    res.render('pages/user/index', {
-        title: '闲余座 - 我的'
-    });
+exports.index = function (req, res) {
+    if (req.session.user) {
+        var user = req.session.user;
+        res.render('pages/user/index', {
+            title: '闲余座 - 我的',
+            user: user
+        });
+    } else {
+        return res.redirect('/user/login');
+    }
 }
 
 exports.login = function (req, res) {
-    res.render('pages/user/login', {
-        title: '登录'
-    });
+    if (req.session.user) {
+        return res.redirect('/user/index');
+    } else {
+        res.render('pages/user/login', {
+            title: '登录'
+        });
+    }  
 }
 
 exports.login_save = function (req, res) {
@@ -19,15 +29,12 @@ exports.login_save = function (req, res) {
     console.log(req.body);
     models.User.findOne({ where: { $or: [{ name: _user.name }, { phoneNumber: _user.phone }] } })
         .then(function (user) {
-            debugger;
             if (!user) {
-                debugger;
                 return res.status(500).send({ msg: "你输入的账号不存在" });
             }
             if (user.password !== _user.password) {
                 return res.status(500).send({ msg: "你输入的账号密码不匹配" });
             }
-            debugger;
             req.session.user = user
             return res.send("OK");
         })
@@ -47,19 +54,6 @@ exports.register_save = function (req, res) {
     console.log(req.body);
 
     async.series({
-        //one: function (callback) {
-        //    debugger;
-        //    setTimeout(function () {
-        //        callback(null, 1);
-        //    }, 1000);
-        //},
-
-        //two: function (callback) {
-        //    debugger;
-        //    setTimeout(function () {
-        //        callback(null, 2);
-        //    }, 100);
-        //}
         checkPhone: function(callback) {
             //check phone
             models.User.findOne({ where: { phoneNumber: _user.phone }})
@@ -117,6 +111,20 @@ exports.register_save = function (req, res) {
 
 
 //return res.send("OK");
+}
+
+exports.signinRequired = function(req, res, next) {
+    var user = req.session.user;
+    if (!user) {
+        return res.redirect('/user/login');
+    }
+    next();
+}
+
+exports.logout = function(req, res) {
+    delete req.session.user;
+
+    res.redirect('/user/login');
 }
 
 exports.newforgot = function (req, res) {

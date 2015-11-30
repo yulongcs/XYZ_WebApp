@@ -4,7 +4,7 @@ block content
   .content.padding-10
     form#form-login.validate(role="form", method="post", action="/user/login/save", enctype="multipart/form-data")
       span.callback-has-error
-      a.link.btn-green.pull-right(href="javascript:") 忘记密码了
+      a.link.btn-green.pull-right(href="/user/newforgot") 忘记密码了
       .clearfix
       table.table-form
         tr
@@ -27,7 +27,7 @@ block content
     $(function() {
 
       var validator = $("#form-login").validate();
-      $('#form-loginA').submit(function (ev) {
+      $('#form-login').submit(function (ev) {
           ev.preventDefault();
           if (validator.form()) {
               var form = $(this);
@@ -37,7 +37,7 @@ block content
                   data: form.serialize(),
                   success: function (result) {
                       if (result === "OK") {
-                         alert("ok")
+                        window.location.href = "/user/index";
                       }
                   },
                   error: function (jqXhr, textStatus, errorThrown) {
