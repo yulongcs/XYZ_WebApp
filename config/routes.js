@@ -44,6 +44,7 @@ module.exports = function (app) {
     app.post('/user/login/save', upload.array(), User.login_save);
     app.get('/user/register', upload.array(), User.register);
     app.post('/user/register/save', upload.array(), User.register_save);
+    app.get('/user/logout', upload.array(), User.logout);
     app.get('/user/newforgot', upload.array(), User.newforgot);
     app.post('/user/newforgot/save', upload.array(), User.newforgot_save);
     app.get('/user/resetpwd', upload.array(), User.resetpwd);
