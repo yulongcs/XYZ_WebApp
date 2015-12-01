@@ -2,7 +2,7 @@
 
 block content
   .content.padding-10
-    form.validate(role="form", method="post", action="/exchange", enctype="multipart/form-data")
+    form#form-newforgot.validate(role="form", method="post", action="/user/newforgot/save", enctype="multipart/form-data")
       span.link.btn-green 请用注册时用的手机号找回密码
       .clearfix
       table.table-form
@@ -22,3 +22,46 @@ block content
           td
             input#inputPassword.form-control(type="password", name="user[password]", validate="{required: true, rangelength: [6,20]}", placeholder="请输入你的新密码")
       button.btn.btn-green.brs5.margin-10(type="submit", style="width: 100%") 提 交
+  #modal-1.modal.fade
+      .modal-dialog
+        .alert.alert-success
+          button.close(type="button", data-dismiss="modal")
+            span(aria-hidden="true") &times;
+            span.sr-only Close
+          strong 修改成功,
+          span 请重新登陆
+  script(type="text/javascript").
+    $(function() {
+      var validator = $("#form-newforgot").validate();
+      $('#form-newforgot').submit(function (ev) {
+          ev.preventDefault();
+          if (validator.form()) {
+              var form = $(this);
+              $.ajax({
+                  url: form.attr('action'),
+                  type: 'POST',
+                  data: form.serialize(),
+                  success: function (result) {
+                      if (result === "OK") {
+                         //alert("ok")
+                         $('#modal-1').modal ('show', {backdrop: 'fade'});
+                         setTimeout(function(){
+                         $('#modal-1').modal ('hide');
+                         window.location.href = "/user/index";
+                         },5000)
+                      }
+                  },
+                  error: function (jqXhr, textStatus, errorThrown) {
+                      //textStatus :"timeout", "error", "notmodified" 和 "parsererror"。
+                      debugger;
+                      if (jqXhr.responseJSON) {
+                          var errorMsg = jqXhr.responseJSON.msg;
+                          alert (errorMsg)
+                      } else {
+                          alert ("unknow error")
+                      }
+                  }
+              });
+          }
+      });
+    });

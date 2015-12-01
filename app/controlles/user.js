@@ -98,19 +98,7 @@ exports.register_save = function (req, res) {
         }
     }, function (err, results) {
         debugger;
-        // results is now equals to: {one: 1, two: 2}
     });
-
-    //check random code
-    //短信验证码错误
-
-    
-
-    //debugger;
-    
-
-
-//return res.send("OK");
 }
 
 exports.signinRequired = function(req, res, next) {
@@ -134,7 +122,50 @@ exports.newforgot = function (req, res) {
 }
 
 exports.newforgot_save = function (req, res) {
-    return res.send("OK");
+    var user = req.session.user;
+    if (user) {
+        return res.redirect('/user/index');
+    }
+    var _user = req.body.user;
+    var userModel;
+    console.log(req.body);
+    async.series({
+        checkPhone: function (callback) {
+            models.User.findOne({ where: { phoneNumber: _user.phone } })
+                .then(function(user) {
+                    if (!user) {
+                        return res.status(500).send({ msg: "手机号码不正确" });
+                    }
+                    debugger;
+                    userModel = user;
+                    return callback(null);
+                })
+                .error(function(err) {
+                    console.log(err);
+                });
+        },
+        checkRandomCode: function(callback) {
+            return callback(null);
+        },
+        checkPassword: function (callback) {
+            return callback(null);
+        },
+        save: function (callback) {
+            debugger;
+            models.User.update({
+                password: _user.password
+            }, userModel)
+                .then(function (user) {
+                    debugger;
+                    return res.send("OK");
+                }).catch(function (err) {
+                    debugger;
+                    return res.status(504).send({ msg: err.message });
+                });
+        }
+    }, function (err, results) {
+        debugger;
+    });
 }
 
 exports.resetpwd = function (req, res) {

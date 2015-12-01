@@ -124,7 +124,7 @@ block content
                     //- $hdUploadFiles.val(filesArr.join(";"));
                 },
                 error: function (file, msg) {
-                   jQuery('#modal-1').modal ('show', {backdrop: 'fade'});
+                   $('#modal-1').modal ('show', {backdrop: 'fade'});
                    file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
                 }
