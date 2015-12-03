@@ -27,7 +27,7 @@ exports.login = function (req, res) {
 exports.login_save = function (req, res) {
     var _user = req.body.user;
     console.log(req.body);
-    models.User.findOne({ where: { $or: [{ name: _user.name }, { phoneNumber: _user.phone }] } })
+    models.User.findOne({ where: { $or: [{ name: _user.name }, { phoneNumber: _user.name }] } })
         .then(function (user) {
             if (!user) {
                 return res.status(500).send({ msg: "你输入的账号不存在" });
@@ -169,13 +169,57 @@ exports.newforgot_save = function (req, res) {
 }
 
 exports.resetpwd = function (req, res) {
+    var user = req.session.user;
+    if (!user) {
+        return res.redirect('/user/login');
+    }
     res.render('pages/user/resetpwd', {
         title: '修改密码'
     });
 }
 
 exports.resetpwd_save = function (req, res) {
-    return res.send("OK");
+    var user = req.session.user;
+    if (!user) {
+        return res.redirect('/user/login');
+    }
+    var _user = req.body.user;
+    console.log(req.body);
+    async.series({
+        checkOldPwd: function (callback) {
+            if (_user.oldpassword !== user.password) {
+                return res.status(500).send({ msg: "原密码不正确" });
+            }
+            return callback(null);
+        },
+        checkPassword: function (callback) {
+            if (_user.newpassword !== _user.confirmpassword) {
+                return res.status(500).send({ msg: "新密码输入不一致" });
+            }
+            if (_user.newpassword === user.password) {
+                return res.status(500).send({ msg: "新密码与原密码一致,请重新输入" });
+            }
+            return callback(null);
+        },
+        save: function (callback) {
+            debugger;
+            models.User.findOne({ where: { id: user.id } }).then(function (user) {
+                models.User.update({
+                        password: _user.newpassword
+                    }, user)
+                    .then(function (user) {
+                        req.session.user.password = _user.newpassword;
+                        debugger;
+                        return res.send("OK");
+                    }).catch(function(err) {
+                        debugger;
+                        return res.status(504).send({ msg: err.message });
+                    });
+            });
+        }
+    }, function (err, results) {
+        debugger;
+    });
 }
 
 exports.release = function (req, res) {

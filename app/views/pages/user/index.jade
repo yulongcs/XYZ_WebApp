@@ -4,7 +4,8 @@ block content
   .content
     .list-item.margin-b10
       a(href="#")
-        img.usercard(src="/app/assets/images/user_photo.png", alt="")
+        img#advancedDropzone.usercard(src="/app/assets/images/user_photo.png", alt="")
+        input#hdUploadFiles(type="hidden", name="file[files]")
       span.username #{user.name}
       div.pull-right
       a(href="/user/logout").btn-green.pull-right.brs5 注销
@@ -38,3 +39,33 @@ block content
       i.icon_advice
       span 意见反馈
     .item-separator
+    #modal-1.modal.fade.custom-width
+      .modal-dialog(style="width: 96%")
+        .alert.alert-success
+          button.close(type="button", data-dismiss="modal")
+            span(aria-hidden="true") &times;
+            span.sr-only Close
+          .clearfix
+          #img-preview(style="text-align: center")
+  script(type = "text/javascript").
+    $(function() {
+    var example_dropzone = $("#advancedDropzone").dropzone({
+                paramName: "file", // defalut:"file", The name that will be used to transfer the file
+                maxFilesize: 10, // MB
+                url: '/projects',
+                acceptedFiles: 'image/*',
+                addedfile: function (file) {
+
+                },
+                uploadprogress: function (file, progress, bytesSent) {
+
+                },
+                success: function (file, tempFile) {
+                     $("#img-preview").html('<img alt="user-image" src="' +tempFile.path + '">');
+                     $('#modal-1').modal ('show', {backdrop: 'fade'});
+                },
+                error: function (file, msg) {
+
+                }
+            });
+    });

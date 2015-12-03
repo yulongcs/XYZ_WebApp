@@ -6,9 +6,9 @@ block content
       .uploadimg-list
         .item
           #advancedDropzone.advanced-area 上传图
+          input#hdUploadFiles(type="hidden", name="file[files]")
       .clearfix.margin-b10
       .item-separator   
-      input#hdUploadFiles(type="hidden", name="file[files]")
       .form-item
         label.control-label(for="inputTitle") 宝贝名：
         .cell
