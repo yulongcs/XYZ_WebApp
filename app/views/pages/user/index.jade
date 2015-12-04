@@ -46,7 +46,10 @@ block content
             span(aria-hidden="true") &times;
             span.sr-only Close
           .clearfix
-          #img-preview(style="text-align: center")
+          #img-container(style="text-align: center")
+            img(alt="user-image", src="/app/assets/images/user_photo.png")
+  link(rel = "stylesheet", href = "/app/assets/styles/cropper.css")
+  script(src = "/app/assets/scripts/cropper.min.js")
   script(type = "text/javascript").
     $(function() {
     var example_dropzone = $("#advancedDropzone").dropzone({
@@ -61,11 +64,27 @@ block content
 
                 },
                 success: function (file, tempFile) {
-                     $("#img-preview").html('<img alt="user-image" src="' +tempFile.path + '">');
+                     $("#img-container").html('<img alt="user-image" src="' +tempFile.path + '">');
                      $('#modal-1').modal ('show', {backdrop: 'fade'});
+                     $('#img-container img').cropper({
+                                 aspectRatio: aspect_ratio,
+                                 resizeable: false,
+                                 moveable: false,
+                                 done: function(data) {
+                                 
+                                 }
+                              });
                 },
                 error: function (file, msg) {
 
                 }
             });
+    var preview_size = [100, 100],
+        aspect_ratio = preview_size[0] / preview_size[1];
+        
+        // Preview Image Setup (based on defined crop width and height
+        //$("#img-preview").css({
+        //  width: preview_size[0],
+        //  height: preview_size[1]
+        //});
     });
